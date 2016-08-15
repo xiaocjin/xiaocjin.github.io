@@ -1,0 +1,677 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Webpack," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x5F00;&amp;#x53D1;&amp;#x6280;&amp;#x5DE7;&amp;#x542F;&amp;#x7528;source-map&amp;#x73B0;&amp;#x5728;&amp;#x7684;&amp;#x4EE3;&amp;#x7801;&amp;#x662F;&amp;#x5408;&amp;#x5E76;&amp;#x4EE5;&amp;#x540E;&amp;#x7684;&amp;#x4EE3;&amp;#x7801;&amp;#xFF0C;&amp;#x4E0D;&amp;#x5229;&amp;#x4E8E;&amp;#x639">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Webpack开发和部署技巧">
+<meta property="og:url" content="http://yoursite.com/2016/08/15/webpack1/index.html">
+<meta property="og:site_name" content="Enjoy">
+<meta property="og:description" content="&amp;#x5F00;&amp;#x53D1;&amp;#x6280;&amp;#x5DE7;&amp;#x542F;&amp;#x7528;source-map&amp;#x73B0;&amp;#x5728;&amp;#x7684;&amp;#x4EE3;&amp;#x7801;&amp;#x662F;&amp;#x5408;&amp;#x5E76;&amp;#x4EE5;&amp;#x540E;&amp;#x7684;&amp;#x4EE3;&amp;#x7801;&amp;#xFF0C;&amp;#x4E0D;&amp;#x5229;&amp;#x4E8E;&amp;#x639">
+<meta property="og:image" content="http://yoursite.com/2016/08/15/webpack1/webpack-process.png">
+<meta property="og:updated_time" content="2016-08-15T01:22:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Webpack开发和部署技巧">
+<meta name="twitter:description" content="&amp;#x5F00;&amp;#x53D1;&amp;#x6280;&amp;#x5DE7;&amp;#x542F;&amp;#x7528;source-map&amp;#x73B0;&amp;#x5728;&amp;#x7684;&amp;#x4EE3;&amp;#x7801;&amp;#x662F;&amp;#x5408;&amp;#x5E76;&amp;#x4EE5;&amp;#x540E;&amp;#x7684;&amp;#x4EE3;&amp;#x7801;&amp;#xFF0C;&amp;#x4E0D;&amp;#x5229;&amp;#x4E8E;&amp;#x639">
+<meta name="twitter:image" content="http://yoursite.com/2016/08/15/webpack1/webpack-process.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Webpack开发和部署技巧 | Enjoy </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Enjoy</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Webpack开发和部署技巧
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-15T08:49:23+08:00" content="2016-08-15">
+              2016-08-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">Webpack</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="&#x5F00;&#x53D1;&#x6280;&#x5DE7;"><a href="#&#x5F00;&#x53D1;&#x6280;&#x5DE7;" class="headerlink" title="&#x5F00;&#x53D1;&#x6280;&#x5DE7;"></a>&#x5F00;&#x53D1;&#x6280;&#x5DE7;</h2><h3 id="&#x542F;&#x7528;source-map"><a href="#&#x542F;&#x7528;source-map" class="headerlink" title="&#x542F;&#x7528;source-map"></a>&#x542F;&#x7528;source-map</h3><p>&#x73B0;&#x5728;&#x7684;&#x4EE3;&#x7801;&#x662F;&#x5408;&#x5E76;&#x4EE5;&#x540E;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x4E0D;&#x5229;&#x4E8E;&#x6392;&#x9519;&#x548C;&#x5B9A;&#x4F4D;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5728;config&#x4E2D;&#x6DFB;&#x52A0;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">devtool: <span class="string">&apos;eval-source-map&apos;</span>,</div><div class="line">...</div></pre></td></tr></table></figure>
+<p>&#x8FD9;&#x6837;&#x51FA;&#x9519;&#x4EE5;&#x540E;&#x5C31;&#x4F1A;&#x91C7;&#x7528;source-map&#x7684;&#x5F62;&#x5F0F;&#x76F4;&#x63A5;&#x663E;&#x793A;&#x4F60;&#x51FA;&#x9519;&#x4EE3;&#x7801;&#x7684;&#x4F4D;&#x7F6E;&#x3002;</p>
+<p><strong>&#x4E3A;css&#x542F;&#x7528;source-map</strong></p>
+<p>javascript&#x6709;&#x4E86;&#x8FD9;&#x4E2A;&#x7279;&#x6027;&#xFF0C;css&#x81EA;&#x7136;&#x4E0D;&#x80FD;&#x843D;&#x540E;&#xFF0C;&#x5176;&#x5B9E;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x53EA;&#x8981;&#x5728;loader&#x91CC;&#x9762;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x5373;&#x53EF;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">{</div><div class="line">  test: <span class="regexp">/\.scss$/</span>,</div><div class="line">  loaders: [<span class="string">&apos;style&apos;</span>, <span class="string">&apos;css?sourceMap&apos;</span>, <span class="string">&apos;sass?sourceMap&apos;</span>],</div><div class="line">  include: APP_PATH</div><div class="line">},</div><div class="line">...</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="&#x914D;&#x7F6E;webpack-dev-server&#x4EE3;&#x7406;"><a href="#&#x914D;&#x7F6E;webpack-dev-server&#x4EE3;&#x7406;" class="headerlink" title="&#x914D;&#x7F6E;webpack-dev-server&#x4EE3;&#x7406;"></a>&#x914D;&#x7F6E;webpack-dev-server&#x4EE3;&#x7406;</h3><p>&#x65E2;&#x7136;&#x5E38;&#x7528;webpack&#x505A;React&#x4E00;&#x7C7B;&#x7684;SPA&#xFF0C;&#x90A3;&#x4E48;&#x4E00;&#x4E2A;&#x5178;&#x578B;&#x7684;&#x4F8B;&#x5B50;&#x5C31;&#x662F;&#x524D;&#x540E;&#x7AEF;&#x5206;&#x79BB;&#x3002;&#x540E;&#x7AEF;&#x662F;&#x4E00;&#x4E2A;RESTful&#x7684;server&#x4E0D;&#x7BA1;&#x7528;&#x4EC0;&#x4E48;&#x5199;&#x7684;&#x3002;&#x5047;&#x5B9A;&#x5728;&#x672C;&#x673A;&#x4ED6;&#x662F;&#x7C7B;&#x4F3C;<a href="http://localhost:5000/api/*&#x8FD9;&#x7C7B;&#x7684;&#x8BF7;&#x6C42;&#xFF0C;&#x73B0;&#x5728;&#x6DFB;&#x52A0;&#x914D;&#x7F6E;&#x8BA9;ajax&#x8BF7;&#x6C42;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;proxy&#x8FC7;&#x53BB;&#x3002;" target="_blank" rel="external">http://localhost:5000/api/*&#x8FD9;&#x7C7B;&#x7684;&#x8BF7;&#x6C42;&#xFF0C;&#x73B0;&#x5728;&#x6DFB;&#x52A0;&#x914D;&#x7F6E;&#x8BA9;ajax&#x8BF7;&#x6C42;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;proxy&#x8FC7;&#x53BB;&#x3002;</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">devServer: {</div><div class="line">    hot: <span class="literal">true</span>,</div><div class="line">    inline: <span class="literal">true</span>,</div><div class="line">    <span class="comment">//&#x5176;&#x5B9E;&#x5F88;&#x7B80;&#x5355;&#x7684;&#xFF0C;&#x53EA;&#x8981;&#x914D;&#x7F6E;&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;</span></div><div class="line">    proxy: {</div><div class="line">      <span class="string">&apos;/api/*&apos;</span>: {</div><div class="line">          target: <span class="string">&apos;http://localhost:5000&apos;</span>,</div><div class="line">          secure: <span class="literal">false</span></div><div class="line">      }</div><div class="line">    }</div><div class="line">},</div></pre></td></tr></table></figure>
+<p>&#x91CD;&#x542F;&#x4EE5;&#x540E; &#x53D1;&#x73B0;/api/*&#x7684;&#x8BF7;&#x6C42;&#x90FD;&#x4EE3;&#x7406;&#x5230;<a href="http://localhost:5000&#x53BB;&#x4E86;&#xFF5E;" target="_blank" rel="external">http://localhost:5000&#x53BB;&#x4E86;&#xFF5E;</a></p>
+<p>&#x66F4;&#x591A;&#x7684;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x770B;&#x5B98;&#x65B9;&#x6587;&#x6863; <a href="https://webpack.github.io/docs/webpack-dev-server.html#proxy" target="_blank" rel="external">Webpack dev server proxy</a></p>
+<h3 id="&#x548C;express&#x914D;&#x5408;"><a href="#&#x548C;express&#x914D;&#x5408;" class="headerlink" title="&#x548C;express&#x914D;&#x5408;"></a>&#x548C;express&#x914D;&#x5408;</h3><p>&#x4E0A;&#x8282;&#x6211;&#x4EEC;&#x8BF4;&#x5230;&#x4E86;&#x4E00;&#x4E2A;&#x548C;express&#x914D;&#x5408;&#x7684;&#x6559;&#x7A0B;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x524D;&#x540E;&#x7AEF;&#x90FD;&#x4F7F;&#x7528;express&#x4F5C;&#x4E3A;&#x6846;&#x67B6;&#xFF0C;&#x90A3;&#x4E48;wepack-dev-middleware&#x5C31;&#x662F;&#x4F60;&#x7684;&#x6700;&#x4F73;&#x9009;&#x62E9;&#xFF0C;&#x4ED6;&#x53EF;&#x4EE5;&#x5B8C;&#x7F8E;&#x7684;&#x548C;express&#x914D;&#x5408;&#x8D77;&#x6765;&#x3002;&#x8FD9;&#x4E2A;&#x4E00;&#x6B65;&#x4E00;&#x6B65;&#x7684;&#x8BF4;&#x8D77;&#x6765;&#x6BD4;&#x8F83;&#x590D;&#x6742;&#xFF0C;&#x5927;&#x5BB6;&#x53EF;&#x4EE5;&#x81EA;&#x5DF1;&#x67E5;&#x770B;&#x4E0B;&#x9762;&#x90A3;&#x4E2A;&#x94FE;&#x63A5;&#xFF0C;&#x6765;&#x914D;&#x7F6E;&#x4F60;&#x7684;express&#x3002;</p>
+<p><a href="http://madole.github.io/blog/2015/08/26/setting-up-webpack-dev-middleware-in-your-express-application/" target="_blank" rel="external">&#x914D;&#x7F6E;webpack-dev-middleware</a></p>
+<h3 id="&#x4F7F;&#x7528;preLoaders&#x548C;postLoaders"><a href="#&#x4F7F;&#x7528;preLoaders&#x548C;postLoaders" class="headerlink" title="&#x4F7F;&#x7528;preLoaders&#x548C;postLoaders"></a>&#x4F7F;&#x7528;preLoaders&#x548C;postLoaders</h3><p>&#x4E5F;&#x8BB8;&#x4F60;&#x60F3;&#x5728;&#x5199;&#x4EE3;&#x7801;&#x7684;&#x65F6;&#x5019;&#x68C0;&#x67E5;&#x81EA;&#x5DF1;&#x7684;js&#x662F;&#x5426;&#x7B26;&#x5408;jshint&#x7684;&#x89C4;&#x8303;&#xFF0C;&#x90A3;&#x4E48;&#x9686;&#x91CD;&#x63A8;&#x8350;preLoaders&#x548C;postLoaders&#xFF0C;&#x4E0A;&#x4E00;&#x8282;&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x975E;&#x5E38;&#x4E86;&#x89E3;loaders&#x4E86;&#xFF0C;&#x7528;&#x5B83;&#x6765;&#x5904;&#x7406;&#x5404;&#x79CD;&#x7C7B;&#x578B;&#x7684;&#x6587;&#x4EF6;&#x3002;preLoaders&#x987E;&#x540D;&#x601D;&#x4E49;&#x5C31;&#x662F;&#x5728;loaders&#x6267;&#x884C;&#x4E4B;&#x524D;&#x5904;&#x7406;&#x7684;&#xFF0C;webpack&#x7684;&#x5904;&#x7406;&#x987A;&#x5E8F;&#x662F;preLoaders - loaders - postLoaders&#x3002;</p>
+<p><strong>&#x5B89;&#x88C5;jshint</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install jshint-loader --save-dev</div></pre></td></tr></table></figure>
+<p><strong>&#x5728;config&#x6587;&#x4EF6;&#x4E2D;&#x914D;&#x7F6E;</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>: {</div><div class="line">...</div><div class="line">	<span class="comment">//&#x548C;loaders&#x4E00;&#x6837;&#x7684;&#x8BED;&#x6CD5;&#xFF0C;&#x5F88;&#x7B80;&#x5355;</span></div><div class="line">	preLoaders: [</div><div class="line">		{</div><div class="line">	   		test: <span class="regexp">/\.jsx?$/</span>,</div><div class="line">       		include: APP_PATH,</div><div class="line">       		loader: <span class="string">&apos;jshint-loader&apos;</span></div><div class="line">		}</div><div class="line">	]</div><div class="line">}</div><div class="line"></div><div class="line">...</div><div class="line"><span class="comment">//&#x914D;&#x7F6E;jshint&#x7684;&#x9009;&#x9879;&#xFF0C;&#x652F;&#x6301;es6&#x7684;&#x6821;&#x9A8C;</span></div><div class="line">jshint: {</div><div class="line">  <span class="string">&quot;esnext&quot;</span>: <span class="literal">true</span></div><div class="line">},</div></pre></td></tr></table></figure>
+<p>&#x597D;&#x4E86; &#x73B0;&#x5728;&#x6BCF;&#x6B21;npm run start&#x7684;&#x65F6;&#x5019;&#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x5230;jshint&#x7684;&#x63D0;&#x793A;&#x4FE1;&#x606F;&#x5566;</p>
+<h3 id="&#x52A0;&#x8F7D;jQuery-plugin&#x6216;&#x8005;&#x5176;&#x4ED6;legacy&#x7B2C;&#x4E09;&#x65B9;&#x5E93;"><a href="#&#x52A0;&#x8F7D;jQuery-plugin&#x6216;&#x8005;&#x5176;&#x4ED6;legacy&#x7B2C;&#x4E09;&#x65B9;&#x5E93;" class="headerlink" title="&#x52A0;&#x8F7D;jQuery plugin&#x6216;&#x8005;&#x5176;&#x4ED6;legacy&#x7B2C;&#x4E09;&#x65B9;&#x5E93;"></a>&#x52A0;&#x8F7D;jQuery plugin&#x6216;&#x8005;&#x5176;&#x4ED6;legacy&#x7B2C;&#x4E09;&#x65B9;&#x5E93;</h3><p><strong>&#x8FD9;&#x4E2A;&#x662F;&#x975E;&#x5E38;&#x6709;&#x7528;&#x7684;&#x5185;&#x5BB9;</strong><br>&#x4F60;&#x7684;&#x9879;&#x76EE;&#x6709;&#x65F6;&#x5019;&#x4F1A;&#x8981;&#x52A0;&#x8F7D;&#x5404;&#x79CD;&#x5404;&#x6837;&#x7684;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;&#xFF0C;&#x4E00;&#x4E9B;&#x8001;&#x7684;&#x5E93;&#x4E0D;&#x652F;&#x6301;AMD&#x6216;&#x8005;CommonJS&#x7B49;&#x4E00;&#x4E9B;&#x5148;&#x8FDB;&#x7684;&#x683C;&#x5F0F;&#xFF0C;&#x6BD4;&#x5982;&#x4E00;&#x4E9B;jQuery&#x7684;&#x63D2;&#x4EF6;&#xFF0C;&#x5B83;&#x4EEC;&#x90FD;&#x4F9D;&#x8D56;jQuery&#xFF0C;&#x5982;&#x679C;&#x76F4;&#x63A5;&#x5F15;&#x7528;&#x5C31;&#x4F1A;&#x62A5;&#x9519; jQuery is not undefined&#x8FD9;&#x7C7B;&#x7684;&#x9519;&#x8BEF;&#xFF0C;&#x6709;&#x51E0;&#x79CD;&#x65B9;&#x6CD5;&#x89E3;&#x51B3;</p>
+<p>&#x5148;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;jQuery plugin: plugin.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">$</span>) </span>{</div><div class="line">    <span class="keyword">const</span> shade = <span class="string">&quot;#556b2f&quot;</span>;</div><div class="line">    $.fn.greenify = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{</div><div class="line">        <span class="keyword">this</span>.css( <span class="string">&quot;color&quot;</span>, shade );</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">    };</div><div class="line">}(jQuery));</div></pre></td></tr></table></figure></p>
+<p><strong>&#x7B2C;&#x4E00;&#x79CD;&#x65B9;&#x6CD5; &#x4F7F;&#x7528;webpack.ProvidePlugin</strong></p>
+<p>webpack&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x63D2;&#x4EF6; &#x628A;&#x4E00;&#x4E2A;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x63D2;&#x5165;&#x5230;&#x6240;&#x6709;&#x7684;&#x4EE3;&#x7801;&#x4E2D;&#xFF0C;&#x5728;config.js&#x91CC;&#x9762;&#x914D;&#x7F6E;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">plugins: [</div><div class="line">  <span class="keyword">new</span> HtmlwebpackPlugin({</div><div class="line">    title: <span class="string">&apos;Hello World app&apos;</span></div><div class="line">  }),</div><div class="line">  <span class="comment">//provide $, jQuery and window.jQuery to every script</span></div><div class="line">  <span class="keyword">new</span> webpack.ProvidePlugin({</div><div class="line">    $: <span class="string">&quot;jquery&quot;</span>,</div><div class="line">    jQuery: <span class="string">&quot;jquery&quot;</span>,</div><div class="line">    <span class="string">&quot;window.jQuery&quot;</span>: <span class="string">&quot;jquery&quot;</span></div><div class="line">  })</div><div class="line">]</div><div class="line">...</div></pre></td></tr></table></figure>
+<p>&#x5728;js&#x4E2D;&#x5F15;&#x7528;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"><span class="comment">//&#x8FD9;&#x4E2A;&#x4E5F;&#x4E0D;&#x9700;&#x8981;&#x4E86; &#x56E0;&#x4E3A;$, jQuery, window.jQuery&#x90FD;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x4E86;</span></div><div class="line"><span class="comment">//import $ from &apos;jquery&apos;;</span></div><div class="line"><span class="keyword">import</span> <span class="string">&apos;./plugin.js&apos;</span>;</div><div class="line">...</div><div class="line">myPromise.then((number) =&gt; {</div><div class="line">  $(<span class="string">&apos;body&apos;</span>).append(<span class="string">&apos;&lt;p&gt;promise result is &apos;</span> + number + <span class="string">&apos; now is &apos;</span> + moment().format() + <span class="string">&apos;&lt;/p&gt;&apos;</span>);</div><div class="line">  <span class="comment">//call our jquery plugin!</span></div><div class="line">  $(<span class="string">&apos;p&apos;</span>).greenify();</div><div class="line">});</div><div class="line">...</div></pre></td></tr></table></figure>
+<p>&#x53D1;&#x73B0;&#x6211;&#x4EEC;&#x63D2;&#x5165;&#x7684;p&#x91CC;&#x9762;&#x7684;&#x989C;&#x8272;&#x5DF2;&#x7ECF;&#x53D8;&#x6210;&#x4E86;&#x7EFF;&#x8272;&#xFF01;</p>
+<p><strong>&#x7B2C;&#x4E8C;&#x79CD;&#x65B9;&#x6CD5; &#x4F7F;&#x7528;imports-loader</strong></p>
+<p>&#x5148;&#x5B89;&#x88C5;&#x8FD9;&#x4E2A;loader<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install imports-loader --save-dev</div></pre></td></tr></table></figure></p>
+<p>&#x7136;&#x540E;&#x5728;&#x5165;&#x53E3;js&#x4E2D;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//&#x6CE8;&#x610F;&#x8FD9;&#x79CD;&#x5199;&#x6CD5; &#x6211;&#x4EEC;&#x628A;jQuery&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#x76F4;&#x63A5;&#x63D2;&#x5165;&#x5230;plugin.js&#x91CC;&#x9762;&#x4E86;</span></div><div class="line"><span class="comment">//&#x76F8;&#x5F53;&#x4E8E;&#x5728;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x7684;&#x5F00;&#x59CB;&#x6DFB;&#x52A0;&#x4E86; var jQuery = require(&apos;jquery&apos;);</span></div><div class="line"><span class="keyword">import</span> <span class="string">&apos;imports?jQuery=jquery!./plugin.js&apos;</span>;</div><div class="line"></div><div class="line"><span class="comment">//&#x540E;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x4E00;&#x6837;</span></div><div class="line">myPromise.then((number) =&gt; {</div><div class="line">  $(<span class="string">&apos;body&apos;</span>).append(<span class="string">&apos;&lt;p&gt;promise result is &apos;</span> + number + <span class="string">&apos; now is &apos;</span> + moment().format() + <span class="string">&apos;&lt;/p&gt;&apos;</span>);</div><div class="line">  <span class="comment">//call our jquery plugin!</span></div><div class="line">  $(<span class="string">&apos;p&apos;</span>).greenify();</div><div class="line">});</div></pre></td></tr></table></figure>
+<h2 id="&#x90E8;&#x7F72;&#x4E0A;&#x7EBF;"><a href="#&#x90E8;&#x7F72;&#x4E0A;&#x7EBF;" class="headerlink" title="&#x90E8;&#x7F72;&#x4E0A;&#x7EBF;"></a>&#x90E8;&#x7F72;&#x4E0A;&#x7EBF;</h2><p>&#x521A;&#x624D;&#x8BF4;&#x7684;&#x5404;&#x79CD;&#x60C5;&#x51B5;&#x90FD;&#x662F;&#x5728;&#x5F00;&#x53D1;&#x65F6;&#x5019;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x90A3;&#x4E48;&#x5047;&#x5982;&#x9879;&#x76EE;&#x5DF2;&#x7ECF;&#x5F00;&#x53D1;&#x5B8C;&#x4E86;&#xFF0C;&#x9700;&#x8981;&#x90E8;&#x7F72;&#x4E0A;&#x7EBF;&#x4E86;&#x3002;&#x6211;&#x4EEC;&#x5E94;&#x8BE5;&#x65B0;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5355;&#x72EC;&#x7684;config&#x6587;&#x4EF6;&#xFF0C;&#x56E0;&#x4E3A;&#x90E8;&#x7F72;&#x4E0A;&#x7EBF;&#x4F7F;&#x7528;webpack&#x7684;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x4E0D;&#x9700;&#x8981;&#x4E00;&#x4E9B;dev-tools,dev-server&#x548C;jshint&#x6821;&#x9A8C;&#x7B49;&#x3002;</p>
+<p>&#x590D;&#x5236;&#x6211;&#x4EEC;&#x73B0;&#x6709;&#x7684;config&#x6587;&#x4EF6;&#xFF0C;&#x547D;&#x540D;&#x4E3A; webpack.production.config.js&#xFF0C;&#x5C06;&#x91CC;&#x9762;&#x5173;&#x4E8E;<br>devServer&#x7B49;&#x548C;&#x5F00;&#x53D1;&#x6709;&#x5173;&#x7684;&#x4E1C;&#x897F;&#x5220;&#x6389;&#x3002;</p>
+<p>&#x5728;package.json&#x4E2D;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x547D;&#x4EE4;&#x3002;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="string">&quot;scripts&quot;</span>: {</div><div class="line">  <span class="string">&quot;start&quot;</span>: <span class="string">&quot;webpack-dev-server --hot --inline&quot;</span>,</div><div class="line">  <span class="string">&quot;build&quot;</span>: <span class="string">&quot;webpack --progress --profile --colors --config webpack.production.config.js&quot;</span></div><div class="line">},</div></pre></td></tr></table></figure>
+<p>&#x5F53;&#x8981;&#x4E0A;&#x7EBF;&#x7684;&#x65F6;&#x5019;,&#x8FD0;&#x884C;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm run build</div></pre></td></tr></table></figure>
+<p>&#x53EF;&#x4EE5;&#x53D1;&#x73B0;build&#x6587;&#x4EF6;&#x5939;&#x4E2D;&#x751F;&#x6210;&#x4E86;&#x6240;&#x6709;&#x4E1C;&#x897F;&#x3002;</p>
+<h3 id="&#x5206;&#x79BB;app-js&#x548C;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;"><a href="#&#x5206;&#x79BB;app-js&#x548C;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;" class="headerlink" title="&#x5206;&#x79BB;app.js&#x548C;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;"></a>&#x5206;&#x79BB;app.js&#x548C;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;</h3><p>&#x73B0;&#x5728;&#x6211;&#x4EEC;build&#x51FA;&#x6765;&#x7684;&#x53EA;&#x6709;&#x4E00;&#x4E2A;bundle.js &#x5982;&#x679C;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;&#x5F88;&#x591A;&#x7684;&#x8BDD;&#xFF0C;&#x4F1A;&#x9020;&#x6210;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x975E;&#x5E38;&#x5927;&#xFF0C;&#x51CF;&#x6162;&#x52A0;&#x8F7D;&#x901F;&#x5EA6;&#xFF0C;&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x8981;&#x628A;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;&#x548C;&#x6211;&#x4EEC;app&#x672C;&#x8EAB;&#x7684;&#x4EE3;&#x7801;&#x5206;&#x6210;&#x4E24;&#x4E2A;&#x6587;&#x4EF6;&#x3002;</p>
+<p><strong>&#x4FEE;&#x6539;entry&#x5165;&#x53E3;&#x6587;&#x4EF6;</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">entry: {</div><div class="line">  app: path.resolve(APP_PATH, <span class="string">&apos;index.js&apos;</span>),</div><div class="line">  <span class="comment">//&#x6DFB;&#x52A0;&#x8981;&#x6253;&#x5305;&#x5728;vendors&#x91CC;&#x9762;&#x7684;&#x5E93;</span></div><div class="line">  vendors: [<span class="string">&apos;jquery&apos;</span>, <span class="string">&apos;moment&apos;</span>]</div><div class="line">},</div></pre></td></tr></table></figure>
+<p><strong>&#x6DFB;&#x52A0;CommonsChunkPlugin</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">plugins: [</div><div class="line">  <span class="comment">//&#x8FD9;&#x4E2A;&#x4F7F;&#x7528;uglifyJs&#x538B;&#x7F29;&#x4F60;&#x7684;js&#x4EE3;&#x7801;</span></div><div class="line">  <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin({minimize: <span class="literal">true</span>}),</div><div class="line">  <span class="comment">//&#x628A;&#x5165;&#x53E3;&#x6587;&#x4EF6;&#x91CC;&#x9762;&#x7684;&#x6570;&#x7EC4;&#x6253;&#x5305;&#x6210;verdors.js</span></div><div class="line">  <span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(<span class="string">&apos;vendors&apos;</span>, <span class="string">&apos;vendors.js&apos;</span>),</div><div class="line">  <span class="keyword">new</span> HtmlwebpackPlugin({</div><div class="line">    title: <span class="string">&apos;Hello World app&apos;</span></div><div class="line">  })</div><div class="line">]</div></pre></td></tr></table></figure>
+<p>&#x6DFB;&#x52A0;&#x5B8C;&#x6BD5; &#x8FD0;&#x884C;npm run build</p>
+<p>&#x5728;build&#x6587;&#x4EF6;&#x5939;&#x4E2D;&#x53D1;&#x73B0;&#x5982;&#x4E0B;&#x7ED3;&#x6784;</p>
+<ul>
+<li>budle.js</li>
+<li>index.html</li>
+<li>vendors.js</li>
+</ul>
+<h3 id="&#x751F;&#x6210;&#x591A;&#x9875;&#x9762;"><a href="#&#x751F;&#x6210;&#x591A;&#x9875;&#x9762;" class="headerlink" title="&#x751F;&#x6210;&#x591A;&#x9875;&#x9762;"></a>&#x751F;&#x6210;&#x591A;&#x9875;&#x9762;</h3><p>&#x5E94;&#x7528;&#x4E0D;&#x53EF;&#x80FD;&#x90FD;&#x662F;SPA&#xFF0C;&#x4E0D;&#x53EF;&#x80FD;&#x53EA;&#x751F;&#x6210;&#x4E00;&#x4E2A;html&#x6587;&#x4EF6;&#xFF0C;&#x5982;&#x679C;&#x60F3;&#x751F;&#x6210;&#x591A;&#x4E2A;html&#x9875;&#x9762;&#x8FD9;&#x4E48;&#x73A9;&#xFF1F;&#x5176;&#x5B9E;&#x4E5F;&#x662F;&#x5F88;&#x7B80;&#x5355;&#x7684;:<br>&#x73B0;&#x5728;&#x7684;&#x9700;&#x6C42;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF0C;&#x6709;&#x4E24;&#x4E2A;&#x9875;&#x9762;&#xFF0C;&#x4E00;&#x4E2A;&#x53EB;index.html &#x5B83;&#x9700;&#x8981;&#x5F15;&#x7528;vendors.js&#x548C;app.js&#x8FD9;&#x4E24;&#x4E2A;&#x6587;&#x4EF6;&#xFF0C;&#x8FD8;&#x6709;&#x4E00;&#x4E2A;mobile.html&#x9875;&#x9762;&#x4ED6;&#x8981;&#x5F15;&#x7528;vendors.js&#x548C;mobile.js&#x8FD9;&#x4E24;&#x4E2A;&#x6587;&#x4EF6;&#x3002;</p>
+<p>&#x9996;&#x5148;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;&#x53EB;mobile.js&#x7684;&#x5165;&#x53E3;&#x6587;&#x4EF6;&#xFF0C;&#x6BD4;app.js&#x66F4;&#x7B80;&#x5355;&#x4E00;&#x4E9B;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="string">&apos;./main.scss&apos;</span>;</div><div class="line"><span class="keyword">import</span> $ <span class="keyword">from</span> <span class="string">&apos;jquery&apos;</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">&apos;imports?jQuery=jquery!./plugin.js&apos;</span>;</div><div class="line"></div><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{</div><div class="line">  <span class="keyword">let</span> app  = <span class="built_in">document</span>.createElement(<span class="string">&apos;div&apos;</span>);</div><div class="line">  app.innerHTML = <span class="string">&apos;&lt;h1&gt;Hello World&lt;/h1&gt;&apos;</span>;</div><div class="line">  <span class="built_in">document</span>.body.appendChild(app);</div><div class="line">  $(<span class="string">&apos;h1&apos;</span>).greenify();</div><div class="line">});</div></pre></td></tr></table></figure>
+<p>&#x5728;config&#x91CC;&#x9762;&#x914D;&#x7F6E;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">entry: {</div><div class="line">  <span class="comment">//&#x4E09;&#x4E2A;&#x5165;&#x53E3;&#x6587;&#x4EF6;&#xFF0C;app, mobile&#x548C; vendors</span></div><div class="line">  app: path.resolve(APP_PATH, <span class="string">&apos;index.js&apos;</span>),</div><div class="line">  mobile: path.resolve(APP_PATH, <span class="string">&apos;mobile.js&apos;</span>),</div><div class="line">  vendors: [<span class="string">&apos;jquery&apos;</span>, <span class="string">&apos;moment&apos;</span>]</div><div class="line">},</div><div class="line">output: {</div><div class="line">  path: BUILD_PATH,</div><div class="line">  <span class="comment">//&#x6CE8;&#x610F; &#x6211;&#x4EEC;&#x4FEE;&#x6539;&#x4E86;bundle.js &#x7528;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;[name]&#x6765;&#x4EE3;&#x66FF;&#xFF0C;&#x4ED6;&#x4F1A;&#x6839;&#x636E;entry&#x7684;&#x5165;&#x53E3;&#x6587;&#x4EF6;&#x540D;&#x79F0;&#x751F;&#x6210;&#x591A;&#x4E2A;js&#x6587;&#x4EF6;&#xFF0C;&#x8FD9;&#x91CC;&#x5C31;&#x662F;(app.js,mobile.js&#x548C;vendors.js)</span></div><div class="line">  filename: <span class="string">&apos;[name].js&apos;</span></div><div class="line">},</div></pre></td></tr></table></figure>
+<p>&#x539F;&#x6765;&#x6211;&#x4EEC;&#x662F;&#x6CA1;&#x6709;&#x6A21;&#x7248;&#x6587;&#x4EF6;&#x7684;&#xFF0C;&#x539F;&#x6765;&#x5229;&#x7528;&#x7684;HtmlWebpackPlugin&#x7684;&#x9ED8;&#x8BA4;&#x6A21;&#x7248;&#x3002;&#x8C01;&#x60F3;&#x5230;&#x8FD9;&#x4F1F;&#x5927;&#x7684;&#x63D2;&#x4EF6;&#x8FD8;&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x6A21;&#x7248;&#x3002;<br>&#x6240;&#x4EE5;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;&#x4E13;&#x95E8;&#x653E;&#x6A21;&#x7248;&#x7684;&#x6587;&#x4EF6;&#x5939;templates,&#x5728;&#x91CC;&#x9762;&#x52A0;&#x4E24;&#x4E2A;&#x6A21;&#x7248;&#x6587;&#x4EF6;index.html &#x548C; mobile.html</p>
+<p><strong>index.html</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>{%= o.htmlWebpackPlugin.options.title %}<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h3</span>&gt;</span>Welcome to webpack<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><strong>mobile.html</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>{%= o.htmlWebpackPlugin.options.title %}<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h3</span>&gt;</span>Welcome to mobile page<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>&#x7EE7;&#x7EED;&#x914D;&#x7F6E;config.js,&#x73B0;&#x5728;&#x8BA9;HtmlwebpackPlugin&#x53EF;&#x4EE5;&#x751F;&#x6210;&#x591A;&#x4E2A;&#x6587;&#x4EF6;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"><span class="comment">//Template&#x7684;&#x6587;&#x4EF6;&#x5939;&#x8DEF;&#x5F84;</span></div><div class="line"><span class="keyword">var</span> TEM_PATH = path.resolve(ROOT_PATH, <span class="string">&apos;templates&apos;</span>);</div><div class="line">...</div><div class="line">plugins: [</div><div class="line">  ...</div><div class="line">  <span class="comment">//&#x521B;&#x5EFA;&#x4E86;&#x4E24;&#x4E2A;HtmlWebpackPlugin&#x7684;&#x5B9E;&#x4F8B;&#xFF0C;&#x751F;&#x6210;&#x4E24;&#x4E2A;&#x9875;&#x9762;</span></div><div class="line">  <span class="keyword">new</span> HtmlwebpackPlugin({</div><div class="line">    title: <span class="string">&apos;Hello World app&apos;</span>,</div><div class="line">    template: path.resolve(TEM_PATH, <span class="string">&apos;index.html&apos;</span>),</div><div class="line">    filename: <span class="string">&apos;index.html&apos;</span>,</div><div class="line">    <span class="comment">//chunks&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x544A;&#x8BC9;&#x63D2;&#x4EF6;&#x8981;&#x5F15;&#x7528;entry&#x91CC;&#x9762;&#x7684;&#x54EA;&#x51E0;&#x4E2A;&#x5165;&#x53E3;</span></div><div class="line">    chunks: [<span class="string">&apos;app&apos;</span>, <span class="string">&apos;vendors&apos;</span>],</div><div class="line">    <span class="comment">//&#x8981;&#x628A;script&#x63D2;&#x5165;&#x5230;&#x6807;&#x7B7E;&#x91CC;</span></div><div class="line">    inject: <span class="string">&apos;body&apos;</span></div><div class="line">  }),</div><div class="line">  <span class="keyword">new</span> HtmlwebpackPlugin({</div><div class="line">    title: <span class="string">&apos;Hello Mobile app&apos;</span>,</div><div class="line">    template: path.resolve(TEM_PATH, <span class="string">&apos;mobile.html&apos;</span>),</div><div class="line">    filename: <span class="string">&apos;mobile.html&apos;</span>,</div><div class="line">    chunks: [<span class="string">&apos;mobile&apos;</span>, <span class="string">&apos;vendors&apos;</span>],</div><div class="line">    inject: <span class="string">&apos;body&apos;</span></div><div class="line">  })</div><div class="line">  ...</div><div class="line">]</div></pre></td></tr></table></figure>
+<p>&#x7136;&#x540E;&#x8FD0;&#x884C;<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm run build</div></pre></td></tr></table></figure></p>
+<p>&#x770B;&#x770B;&#x751F;&#x6210;&#x597D;&#x7684;&#x4F1F;&#x5927;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x6CA1;&#x95EE;&#x9898;&#xFF01;</p>
+<ul>
+<li>app.js</li>
+<li>mobile.js</li>
+<li>vendors.js</li>
+<li>index.html</li>
+<li>mobile.html</li>
+</ul>
+<p>&#x770B;&#x770B;&#x5F15;&#x7528;&#x7684;&#x5BF9;&#x5E94;&#x5173;&#x7CFB;&#xFF0C;&#x5B8C;&#x7F8E;&#xFF01;&#xFF01;</p>
+<p><strong>index.html</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>Welcome to webpack<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;vendors.js&quot;</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;app.js&quot;</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><strong>mobile.html</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>Welcome to mobile page<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;vendors.js&quot;</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;mobile.js&quot;</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="&#x751F;&#x6210;Hash&#x540D;&#x79F0;&#x7684;script&#x6765;&#x9632;&#x6B62;&#x7F13;&#x5B58;"><a href="#&#x751F;&#x6210;Hash&#x540D;&#x79F0;&#x7684;script&#x6765;&#x9632;&#x6B62;&#x7F13;&#x5B58;" class="headerlink" title="&#x751F;&#x6210;Hash&#x540D;&#x79F0;&#x7684;script&#x6765;&#x9632;&#x6B62;&#x7F13;&#x5B58;"></a>&#x751F;&#x6210;Hash&#x540D;&#x79F0;&#x7684;script&#x6765;&#x9632;&#x6B62;&#x7F13;&#x5B58;</h3><p>&#x7ECF;&#x5178;&#x95EE;&#x9898;,&#x4EE3;&#x7801;&#x66F4;&#x65B0;&#x4E86;&#xFF0C;&#x4F46;&#x662F;&#x6D4F;&#x89C8;&#x5668;&#x6709;&#x7F13;&#x5B58;&#xFF0C;&#x5230;&#x65F6;&#x5019;&#x5C31;&#x50BB;&#x4E86;&#x3002;<br>&#x600E;&#x4E48;&#x89E3;&#x51B3;&#xFF0C;&#x6362;&#x540D;&#x5B57;&#x5457;&#x3002;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5728;&#x540E;&#x9762;&#x52A0;&#x53C2;&#x6570;,&#x4E5F;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x6362;&#x6389;&#x6587;&#x4EF6;&#x540D;&#x5B57;&#x3002;<br>webpack&#x63D0;&#x4F9B;&#x7ED9;&#x4E86;&#x6211;&#x4EEC;&#x975E;&#x5E38;&#x7B80;&#x5355;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x57FA;&#x4E8E;&#x6587;&#x4EF6;&#x7684;md5&#xFF0C;&#x53EA;&#x8981;&#x628A;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">output: {</div><div class="line">  path: BUILD_PATH,</div><div class="line">  <span class="comment">//&#x53EA;&#x8981;&#x518D;&#x52A0;&#x4E0A;hash&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;</span></div><div class="line">  filename: <span class="string">&apos;[name].[hash].js&apos;</span></div><div class="line">},</div></pre></td></tr></table></figure>
+<p>&#x8FD0;&#x884C;&#x5B8C;build&#x4EE5;&#x540E;&#xFF0C;&#x770B;&#x770B;&#x751F;&#x6210;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x5F88;&#x5B8C;&#x7F8E;&#xFF5E;</p>
+<p><strong>index.html</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>Welcome to webpack<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;vendors.js&quot;</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;app.b6641abee64c999d95c1.js&quot;</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>&#x597D;&#x4E86;&#xFF0C;&#x4F60;&#x73B0;&#x5728;&#x4E86;&#x89E3;webpack&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;module bundler&#x7684;&#x7CBE;&#x9AD3;&#x4E86;&#x5427;&#xFF0C;&#x628A;&#x6211;&#x4EEC;&#x7684;&#x4F8B;&#x5B50;&#x505A;&#x6210;&#x4E00;&#x4E2A;&#x56FE;&#xFF0C;&#x5E2E;&#x52A9;&#x4F60;&#x7406;&#x89E3;&#x4E00;&#x4E0B;&#x3002;<br><img src="/2016/08/15/webpack1/webpack-process.png" alt="webpack overview"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Webpack/" rel="tag">#Webpack</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/10/es5/" rel="next" title="ECMAScript 6 Features 中文版">
+                <i class="fa fa-chevron-left"></i> ECMAScript 6 Features 中文版
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/15/webpack2/" rel="prev" title="Webpack & React">
+                Webpack & React <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Jin xc" />
+          <p class="site-author-name" itemprop="name">Jin xc</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xiaocjin" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开发技巧"><span class="nav-number">1.</span> <span class="nav-text">开发技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#启用source-map"><span class="nav-number">1.1.</span> <span class="nav-text">启用source-map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置webpack-dev-server代理"><span class="nav-number">1.2.</span> <span class="nav-text">配置webpack-dev-server代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#和express配合"><span class="nav-number">1.3.</span> <span class="nav-text">和express配合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用preLoaders和postLoaders"><span class="nav-number">1.4.</span> <span class="nav-text">使用preLoaders和postLoaders</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加载jQuery-plugin或者其他legacy第三方库"><span class="nav-number">1.5.</span> <span class="nav-text">加载jQuery plugin或者其他legacy第三方库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署上线"><span class="nav-number">2.</span> <span class="nav-text">部署上线</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分离app-js和第三方库"><span class="nav-number">2.1.</span> <span class="nav-text">分离app.js和第三方库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成多页面"><span class="nav-number">2.2.</span> <span class="nav-text">生成多页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成Hash名称的script来防止缓存"><span class="nav-number">2.3.</span> <span class="nav-text">生成Hash名称的script来防止缓存</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jin xc</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
