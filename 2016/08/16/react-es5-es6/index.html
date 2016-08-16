@@ -1,0 +1,680 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript,ES6,React," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Quick links
+require =&amp;gt; import
+createClass =&amp;gt; extends React.Component
+module.exports =&amp;gt; export default
+name: function()  =&amp;gt;  name()
+getDefaultProps and propTypes
+getInitialState
+destructuri">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React的ES5 ES6写法对照">
+<meta property="og:url" content="http://yoursite.com/2016/08/16/react-es5-es6/index.html">
+<meta property="og:site_name" content="Enjoy">
+<meta property="og:description" content="Quick links
+require =&amp;gt; import
+createClass =&amp;gt; extends React.Component
+module.exports =&amp;gt; export default
+name: function()  =&amp;gt;  name()
+getDefaultProps and propTypes
+getInitialState
+destructuri">
+<meta property="og:updated_time" content="2016-08-16T00:41:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React的ES5 ES6写法对照">
+<meta name="twitter:description" content="Quick links
+require =&amp;gt; import
+createClass =&amp;gt; extends React.Component
+module.exports =&amp;gt; export default
+name: function()  =&amp;gt;  name()
+getDefaultProps and propTypes
+getInitialState
+destructuri">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> React的ES5 ES6写法对照 | Enjoy </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Enjoy</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                React的ES5 ES6写法对照
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-16T08:37:44+08:00" content="2016-08-16">
+              2016-08-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Quick-links"><a href="#Quick-links" class="headerlink" title="Quick links"></a>Quick links</h2><ol>
+<li><a href="#require-to-import">require =&gt; import</a></li>
+<li><a href="#createclass-to-extends">createClass =&gt; extends React.Component</a></li>
+<li><a href="#module-exports-to-export-default">module.exports =&gt; export default</a></li>
+<li><a href="#functions">name: function()  =&gt;  name()</a></li>
+<li><a href="#getdefaultprops-and-proptypes">getDefaultProps and propTypes</a></li>
+<li><a href="#getinitialstate">getInitialState</a></li>
+<li><a href="#destructuring-and-spread-attributes">destructuring &amp; spread attributes</a></li>
+<li><a href="#use-arrow-functions">use arrow functions</a></li>
+</ol>
+<h3 id="require-to-import"><a href="#require-to-import" class="headerlink" title="require-to-import"></a>require-to-import</h3><p>ES5</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//ES5</span></div><div class="line"><span class="keyword">var</span> React = <span class="built_in">require</span>(<span class="string">&quot;react&quot;</span>);  </div><div class="line"><span class="keyword">var</span> PropTypes = React.PropTypes;</div></pre></td></tr></table></figure>
+<p>ES6</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, { Component, PropTypes } <span class="keyword">from</span> <span class="string">&apos;react&apos;</span>;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p><strong><a href="#quick-links">&#x2B06; back to top</a></strong></p>
+<h3 id="createClass-to-extends"><a href="#createClass-to-extends" class="headerlink" title="createClass-to-extends"></a>createClass-to-extends</h3><p>ES5</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Mycomponent = React.createClass({</div><div class="line">  render: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;div&gt;ES5&lt;/div&gt;</div><div class="line">    );</div><div class="line">  },</div><div class="line">});</div></pre></td></tr></table></figure>
+<p>ES6</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Mycomponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>{</div><div class="line">  render() {</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;div&gt;ES6&lt;/div&gt;</div><div class="line">    );</div><div class="line">  }</div><div class="line">}</div></pre></td></tr></table></figure>
+<p><strong><a href="#quick-links">&#x2B06; back to top</a></strong></p>
+<h3 id="module-exports-to-export-default"><a href="#module-exports-to-export-default" class="headerlink" title="module-exports-to-export-default"></a>module-exports-to-export-default</h3><p>ES5</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Mycomponent = React.createClass({</div><div class="line">  render: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;div&gt;ES5&lt;/div&gt;</div><div class="line">    );</div><div class="line">  },</div><div class="line">});</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = Mycomponent;</div></pre></td></tr></table></figure>
+<p>ES6</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Mycomponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>{</div><div class="line">  render() {</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;div&gt;ES6&lt;/div&gt;</div><div class="line">    );</div><div class="line">  }</div><div class="line">}</div></pre></td></tr></table></figure>
+<p><strong><a href="#quick-links">&#x2B06; back to top</a></strong></p>
+<h3 id="functions"><a href="#functions" class="headerlink" title="functions"></a>functions</h3><p>ES5</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Mycomponent = React.createClass({</div><div class="line">  componentWillMount: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line"></div><div class="line">  },</div><div class="line">  render: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;div&gt;ES5&lt;/div&gt;</div><div class="line">    );</div><div class="line">  },</div><div class="line">});</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = Mycomponent;</div></pre></td></tr></table></figure>
+<p>ES6</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Mycomponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>{</div><div class="line">  componentWillMount() {</div><div class="line"></div><div class="line">  }</div><div class="line">  render() {</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;div&gt;ES6&lt;/div&gt;</div><div class="line">    );</div><div class="line">  }</div><div class="line">}</div></pre></td></tr></table></figure>
+<p><strong><a href="#quick-links">&#x2B06; back to top</a></strong></p>
+<h3 id="getDefaultProps-and-propTypes"><a href="#getDefaultProps-and-propTypes" class="headerlink" title="getDefaultProps-and-propTypes"></a>getDefaultProps-and-propTypes</h3><p>ES5</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Video = React.createClass({</div><div class="line">    getDefaultProps: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{</div><div class="line">        <span class="keyword">return</span> {</div><div class="line">            autoPlay: <span class="literal">false</span>,</div><div class="line">            maxLoops: <span class="number">10</span>,</div><div class="line">        };</div><div class="line">    },</div><div class="line">    propTypes: {</div><div class="line">        autoPlay: React.PropTypes.bool.isRequired,</div><div class="line">        maxLoops: React.PropTypes.number.isRequired,</div><div class="line">        posterFrameSrc: React.PropTypes.string.isRequired,</div><div class="line">        videoSrc: React.PropTypes.string.isRequired,</div><div class="line">    },</div><div class="line">    render: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{</div><div class="line">        <span class="keyword">return</span> (</div><div class="line">            &lt;View /&gt;</div><div class="line">        );</div><div class="line">    },</div><div class="line">});</div></pre></td></tr></table></figure>
+<p>ES6</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Video</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>{</div><div class="line">  render() {</div><div class="line">      <span class="keyword">return</span> (</div><div class="line">          &lt;View /&gt;</div><div class="line">      );</div><div class="line">  }</div><div class="line">}</div><div class="line">Video.defaultProps = {</div><div class="line">    autoPlay: false,</div><div class="line">    maxLoops: 10,</div><div class="line">};</div><div class="line">Video.propTypes = {</div><div class="line">    autoPlay: React.PropTypes.bool.isRequired,</div><div class="line">    maxLoops: React.PropTypes.number.isRequired,</div><div class="line">    posterFrameSrc: React.PropTypes.string.isRequired,</div><div class="line">    videoSrc: React.PropTypes.string.isRequired,</div><div class="line">};</div></pre></td></tr></table></figure>
+<p>ES future proposals:</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Video</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>{</div><div class="line">  <span class="keyword">static</span> defaultProps = {</div><div class="line">    autoPlay: <span class="literal">false</span>,</div><div class="line">    maxLoops: <span class="number">10</span>,</div><div class="line">  }</div><div class="line">  <span class="keyword">static</span> propTypes = {</div><div class="line">    autoPlay: React.PropTypes.bool.isRequired,</div><div class="line">    maxLoops: React.PropTypes.number.isRequired,</div><div class="line">    posterFrameSrc: React.PropTypes.string.isRequired,</div><div class="line">    videoSrc: React.PropTypes.string.isRequired,</div><div class="line">  }</div><div class="line">  state = {</div><div class="line">    loopsRemaining: <span class="keyword">this</span>.props.maxLoops,</div><div class="line">  }</div><div class="line">}</div></pre></td></tr></table></figure>
+<p><strong><a href="#quick-links">&#x2B06; back to top</a></strong></p>
+<h3 id="getInitialState"><a href="#getInitialState" class="headerlink" title="getInitialState"></a>getInitialState</h3><p>ES5</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Header = React.createClass({</div><div class="line">  getInitialState: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{</div><div class="line">    <span class="keyword">return</span> {</div><div class="line">      title: <span class="keyword">this</span>.props.title</div><div class="line">    };</div><div class="line">  },</div><div class="line">});</div></pre></td></tr></table></figure>
+<p>ES6</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Header</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>{</div><div class="line">  <span class="keyword">constructor</span>(props) {</div><div class="line">    <span class="keyword">super</span>(props);</div><div class="line">      <span class="keyword">this</span>.state = {</div><div class="line">        title: props.title</div><div class="line">      };</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>ES future proposals:</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Header</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>{</div><div class="line">  state = {</div><div class="line">    title: <span class="keyword">this</span>.props.title</div><div class="line">  };</div><div class="line">    </div><div class="line">  <span class="comment">// followed by constructor...</span></div><div class="line">}</div></pre></td></tr></table></figure>
+<p><strong><a href="#quick-links">&#x2B06; back to top</a></strong></p>
+<h3 id="Destructuring-and-spread-attributes"><a href="#Destructuring-and-spread-attributes" class="headerlink" title="Destructuring-and-spread-attributes"></a>Destructuring-and-spread-attributes</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AutoloadingPostsGrid</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>{</div><div class="line">  render() {</div><div class="line">    <span class="keyword">var</span> {</div><div class="line">      className,</div><div class="line">      ...others,  <span class="comment">// contains all properties of this.props except for className</span></div><div class="line">    } = <span class="keyword">this</span>.props;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;div className={className}&gt;</div><div class="line">        &lt;PostsGrid {...others} /&gt;</div><div class="line">        &lt;button onClick={this.handleLoadMoreClick}&gt;Load more&lt;/button&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    );</div><div class="line">  }</div><div class="line">}</div></pre></td></tr></table></figure>
+<p><strong><a href="#quick-links">&#x2B06; back to top</a></strong></p>
+<h3 id="use-arrow-functions"><a href="#use-arrow-functions" class="headerlink" title="use-arrow-functions"></a>use-arrow-functions</h3><p>Stateless component:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>{</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    &lt;div&gt;</div><div class="line">      &lt;MyComponent /&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">  );</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>Using Arrow function:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> App = () =&gt; (</div><div class="line">  &lt;div&gt;</div><div class="line">    &lt;MyComponent /&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">);</div></pre></td></tr></table></figure>
+<p>Using Arrow funtion with <a href="https://github.com/getify/You-Dont-Know-JS/blob/master/es6%20&amp;%20beyond/ch2.md#destructuring-parameters" target="_blank" rel="external">Destructuring function arguments</a>:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> App = ({className, ...rest}) =&gt; (</div><div class="line">  &lt;div className={classnames(className)} {rest}&gt;</div><div class="line">    &lt;MyComponent /&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">);</div></pre></td></tr></table></figure>
+<p><strong><a href="#quick-links">&#x2B06; back to top</a></strong></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://github.com/facebook/react" target="_blank" rel="external">React</a></li>
+<li><a href="https://github.com/babel/babel" target="_blank" rel="external">Babel</a></li>
+<li><a href="https://developer.mozilla.org/en/docs/Web/JavaScript/New_in_JavaScript/ECMAScript_6_support_in_Mozilla" target="_blank" rel="external">ECMAScript 6 support in Mozilla</a></li>
+<li><a href="https://babeljs.io/blog/2015/06/07/react-on-es6-plus" target="_blank" rel="external">React on ES6+</a></li>
+<li><a href="http://cheng.logdown.com/posts/2015/09/29/converting-es5-react-to-es6" target="_blank" rel="external">Converting React project from ES5 to ES6</a></li>
+<li><a href="http://bbs.reactnative.cn/topic/15/react-react-native-%E7%9A%84es5-es6%E5%86%99%E6%B3%95%E5%AF%B9%E7%85%A7%E8%A1%A8/2" target="_blank" rel="external">React/React Native &#x7684;ES5 ES6&#x5199;&#x6CD5;&#x5BF9;&#x7167;&#x8868;</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+          
+            <a href="/tags/ES6/" rel="tag">#ES6</a>
+          
+            <a href="/tags/React/" rel="tag">#React</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/15/webpack2/" rel="next" title="Webpack & React">
+                <i class="fa fa-chevron-left"></i> Webpack & React
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Jin xc" />
+          <p class="site-author-name" itemprop="name">Jin xc</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xiaocjin" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-links"><span class="nav-number">1.</span> <span class="nav-text">Quick links</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#require-to-import"><span class="nav-number">1.1.</span> <span class="nav-text">require-to-import</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#createClass-to-extends"><span class="nav-number">1.2.</span> <span class="nav-text">createClass-to-extends</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#module-exports-to-export-default"><span class="nav-number">1.3.</span> <span class="nav-text">module-exports-to-export-default</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#functions"><span class="nav-number">1.4.</span> <span class="nav-text">functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getDefaultProps-and-propTypes"><span class="nav-number">1.5.</span> <span class="nav-text">getDefaultProps-and-propTypes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getInitialState"><span class="nav-number">1.6.</span> <span class="nav-text">getInitialState</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Destructuring-and-spread-attributes"><span class="nav-number">1.7.</span> <span class="nav-text">Destructuring-and-spread-attributes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#use-arrow-functions"><span class="nav-number">1.8.</span> <span class="nav-text">use-arrow-functions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">2.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jin xc</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
