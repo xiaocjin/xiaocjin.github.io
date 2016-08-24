@@ -1,0 +1,647 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x5728;&amp;#x7EC4;&amp;#x4EF6;&amp;#x7684;&amp;#x6574;&amp;#x4E2A;&amp;#x751F;&amp;#x547D;&amp;#x5468;&amp;#x671F;&amp;#x4E2D;&amp;#xFF0C;&amp;#x968F;&amp;#x7740;&amp;#x8BE5;&amp;#x7EC4;&amp;#x4EF6;&amp;#x7684;props&amp;#x6216;&amp;#x8005;state&amp;#x53D1;&amp;#x751F;&amp;#x6539;&amp;#x53D">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React：组件的生命周期">
+<meta property="og:url" content="http://yoursite.com/2016/08/24/react-life/index.html">
+<meta property="og:site_name" content="Enjoy">
+<meta property="og:description" content="&amp;#x5728;&amp;#x7EC4;&amp;#x4EF6;&amp;#x7684;&amp;#x6574;&amp;#x4E2A;&amp;#x751F;&amp;#x547D;&amp;#x5468;&amp;#x671F;&amp;#x4E2D;&amp;#xFF0C;&amp;#x968F;&amp;#x7740;&amp;#x8BE5;&amp;#x7EC4;&amp;#x4EF6;&amp;#x7684;props&amp;#x6216;&amp;#x8005;state&amp;#x53D1;&amp;#x751F;&amp;#x6539;&amp;#x53D">
+<meta property="og:image" content="http://yoursite.com/2016/08/24/react-life/PropTypes.png">
+<meta property="og:image" content="http://yoursite.com/2016/08/24/react-life/life.png">
+<meta property="og:updated_time" content="2016-08-24T01:12:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React：组件的生命周期">
+<meta name="twitter:description" content="&amp;#x5728;&amp;#x7EC4;&amp;#x4EF6;&amp;#x7684;&amp;#x6574;&amp;#x4E2A;&amp;#x751F;&amp;#x547D;&amp;#x5468;&amp;#x671F;&amp;#x4E2D;&amp;#xFF0C;&amp;#x968F;&amp;#x7740;&amp;#x8BE5;&amp;#x7EC4;&amp;#x4EF6;&amp;#x7684;props&amp;#x6216;&amp;#x8005;state&amp;#x53D1;&amp;#x751F;&amp;#x6539;&amp;#x53D">
+<meta name="twitter:image" content="http://yoursite.com/2016/08/24/react-life/PropTypes.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> React：组件的生命周期 | Enjoy </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Enjoy</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                React：组件的生命周期
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-24T09:02:27+08:00" content="2016-08-24">
+              2016-08-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&#x5728;&#x7EC4;&#x4EF6;&#x7684;&#x6574;&#x4E2A;&#x751F;&#x547D;&#x5468;&#x671F;&#x4E2D;&#xFF0C;&#x968F;&#x7740;&#x8BE5;&#x7EC4;&#x4EF6;&#x7684;props&#x6216;&#x8005;state&#x53D1;&#x751F;&#x6539;&#x53D8;&#xFF0C;&#x5176;DOM&#x8868;&#x73B0;&#x4E5F;&#x4F1A;&#x6709;&#x76F8;&#x5E94;&#x7684;&#x53D8;&#x5316;&#x3002;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x72B6;&#x6001;&#x673A;&#xFF0C;&#x5BF9;&#x4E8E;&#x7279;&#x5B9A;&#x5730;&#x8F93;&#x5165;&#xFF0C;&#x5B83;&#x603B;&#x8FD4;&#x56DE;&#x4E00;&#x81F4;&#x7684;&#x8F93;&#x51FA;&#x3002;</p>
+<p>&#x4E00;&#x4E2A;React&#x7EC4;&#x4EF6;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x5206;&#x4E3A;&#x4E09;&#x4E2A;&#x90E8;&#x5206;&#xFF1A;&#x5B9E;&#x4F8B;&#x5316;&#x3001;&#x5B58;&#x5728;&#x671F;&#x548C;&#x9500;&#x6BC1;&#x65F6;&#x3002;</p>
+<a id="more"></a>
+<h2 id="&#x5B9E;&#x4F8B;&#x5316;"><a href="#&#x5B9E;&#x4F8B;&#x5316;" class="headerlink" title="&#x5B9E;&#x4F8B;&#x5316;"></a>&#x5B9E;&#x4F8B;&#x5316;</h2><p>&#x5F53;&#x7EC4;&#x4EF6;&#x5728;<strong>&#x5BA2;&#x6237;&#x7AEF;</strong>&#x88AB;&#x5B9E;&#x4F8B;&#x5316;&#xFF0C;&#x7B2C;&#x4E00;&#x6B21;&#x88AB;&#x521B;&#x5EFA;&#x65F6;&#xFF0C;&#x4EE5;&#x4E0B;&#x65B9;&#x6CD5;&#x4F9D;&#x6B21;&#x88AB;&#x8C03;&#x7528;&#xFF1A;</p>
+<p>1&#x3001;getDefaultProps<br> 2&#x3001;getInitialState<br> 3&#x3001;componentWillMount<br> 4&#x3001;render<br> 5&#x3001;componentDidMount</p>
+<p>&#x5F53;&#x7EC4;&#x4EF6;&#x5728;<strong>&#x670D;&#x52A1;&#x7AEF;</strong>&#x88AB;&#x5B9E;&#x4F8B;&#x5316;&#xFF0C;&#x9996;&#x6B21;&#x88AB;&#x521B;&#x5EFA;&#x65F6;&#xFF0C;&#x4EE5;&#x4E0B;&#x65B9;&#x6CD5;&#x4F9D;&#x6B21;&#x88AB;&#x8C03;&#x7528;&#xFF1A;</p>
+<p>1&#x3001;getDefaultProps<br> 2&#x3001;getInitialState<br> 3&#x3001;componentWillMount<br> 4&#x3001;render</p>
+<p>componentDidMount &#x4E0D;&#x4F1A;&#x5728;&#x670D;&#x52A1;&#x7AEF;&#x88AB;&#x6E32;&#x67D3;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#x8C03;&#x7528;&#x3002;</p>
+<h3 id="getDefaultProps"><a href="#getDefaultProps" class="headerlink" title="getDefaultProps"></a><strong>getDefaultProps</strong></h3><p>&#x5BF9;&#x4E8E;&#x6BCF;&#x4E2A;&#x7EC4;&#x4EF6;&#x5B9E;&#x4F8B;&#x6765;&#x8BB2;&#xFF0C;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x53EA;&#x4F1A;&#x8C03;&#x7528;&#x4E00;&#x6B21;&#xFF0C;&#x8BE5;&#x7EC4;&#x4EF6;&#x7C7B;&#x7684;&#x6240;&#x6709;&#x540E;&#x7EED;&#x5E94;&#x7528;&#xFF0C;getDefaultPops &#x5C06;&#x4E0D;&#x4F1A;&#x518D;&#x88AB;&#x8C03;&#x7528;&#xFF0C;&#x5176;&#x8FD4;&#x56DE;&#x7684;&#x5BF9;&#x8C61;&#x53EF;&#x4EE5;&#x7528;&#x4E8E;&#x8BBE;&#x7F6E;&#x9ED8;&#x8BA4;&#x7684; props(properties&#x7684;&#x7F29;&#x5199;) &#x503C;&#x3002;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">var Hello = React.creatClass({</div><div class="line">    getDefaultProps: function(){</div><div class="line">        return {</div><div class="line">            name: &apos;pomy&apos;,</div><div class="line">            git: &apos;dwqs&apos;</div><div class="line">        }</div><div class="line">    },</div><div class="line"></div><div class="line">    render: function(){</div><div class="line">        return (</div><div class="line">            &lt;div&gt;Hello,{this.props.name},git username is {this.props.dwqs}&lt;/div&gt;</div><div class="line">        )</div><div class="line">    }</div><div class="line">});</div><div class="line"></div><div class="line">ReactDOM.render(&lt;Hello /&gt;, document.body);</div></pre></td></tr></table></figure>
+<p>&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x6302;&#x8F7D;&#x7EC4;&#x4EF6;&#x7684;&#x65F6;&#x5019;&#x8BBE;&#x7F6E; props&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var data = [{title: &apos;Hello&apos;}];</div><div class="line">&lt;Hello data={data} /&gt;</div></pre></td></tr></table></figure>
+<p>&#x6216;&#x8005;&#x8C03;&#x7528; <code>setProps</code> &#xFF08;&#x4E00;&#x822C;&#x4E0D;&#x9700;&#x8981;&#x8C03;&#x7528;&#xFF09;&#x6765;&#x8BBE;&#x7F6E;&#x5176; props&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var data = [{title: &apos;Hello&apos;}];</div><div class="line">var Hello = React.render(&lt;Demo /&gt;, document.body);</div><div class="line">Hello.setProps({data:data});</div></pre></td></tr></table></figure>
+<p><strong>&#x4F46;&#x53EA;&#x80FD;&#x5728;&#x5B50;&#x7EC4;&#x4EF6;&#x6216;&#x7EC4;&#x4EF6;&#x6811;&#x4E0A;&#x8C03;&#x7528; setProps&#x3002;&#x522B;&#x8C03;&#x7528; this.setProps &#x6216;&#x8005; &#x76F4;&#x63A5;&#x4FEE;&#x6539; this.props&#x3002;&#x5C06;&#x5176;&#x5F53;&#x505A;&#x53EA;&#x8BFB;&#x6570;&#x636E;&#x3002;</strong></p>
+<p>React&#x901A;&#x8FC7; <code>propTypes</code> &#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x79CD;&#x9A8C;&#x8BC1; props &#x7684;&#x65B9;&#x5F0F;&#xFF0C;<code>propTypes</code> &#x662F;&#x4E00;&#x4E2A;&#x914D;&#x7F6E;&#x5BF9;&#x8C61;&#xFF0C;&#x7528;&#x4E8E;&#x5B9A;&#x4E49;&#x5C5E;&#x6027;&#x7C7B;&#x578B;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">var survey = React.createClass({</div><div class="line">    propTypes: {</div><div class="line">        survey: React.PropTypes.shape({</div><div class="line">            id: React.PropTypes.number.isRequired</div><div class="line">        }).isRequired,</div><div class="line">        onClick: React.PropTypes.func,</div><div class="line">        name: React.PropTypes.string,</div><div class="line">        score: React.PropTypes.array</div><div class="line">        ...</div><div class="line">    },</div><div class="line"></div><div class="line">    //...</div><div class="line">})</div></pre></td></tr></table></figure>
+<p>&#x7EC4;&#x4EF6;&#x521D;&#x59CB;&#x5316;&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x4F20;&#x9012;&#x7684;&#x5C5E;&#x6027;&#x548C; <code>propTypes</code> &#x4E0D;&#x5339;&#x914D;&#xFF0C;&#x5219;&#x4F1A;&#x6253;&#x5370;&#x4E00;&#x4E2A; console.warn &#x65E5;&#x5FD7;&#x3002;&#x5982;&#x679C;&#x662F;&#x53EF;&#x9009;&#x914D;&#x7F6E;&#xFF0C;&#x53EF;&#x4EE5;&#x53BB;&#x6389;.isRequired&#x3002;&#x5E38;&#x7528;&#x7684; PropTypes &#x5982;&#x4E0B;&#xFF1A;<br><img src="/2016/08/24/react-life/PropTypes.png" alt="PropTypes"></p>
+<h3 id="getInitialState"><a href="#getInitialState" class="headerlink" title="getInitialState"></a><strong>getInitialState</strong></h3><p>&#x5BF9;&#x4E8E;&#x7EC4;&#x4EF6;&#x7684;&#x6BCF;&#x4E2A;&#x5B9E;&#x4F8B;&#x6765;&#x8BF4;&#xFF0C;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x7684;&#x8C03;&#x7528;<strong>&#x6709;&#x4E14;&#x53EA;&#x6709;&#x4E00;&#x6B21;&#xFF0C;</strong>&#x7528;&#x6765;&#x521D;&#x59CB;&#x5316;&#x6BCF;&#x4E2A;&#x5B9E;&#x4F8B;&#x7684; state&#xFF0C;&#x5728;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x91CC;&#xFF0C;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x7EC4;&#x4EF6;&#x7684; props&#x3002;&#x6BCF;&#x4E00;&#x4E2A;React&#x7EC4;&#x4EF6;&#x90FD;&#x6709;&#x81EA;&#x5DF1;&#x7684; state&#xFF0C;&#x5176;&#x4E0E; props &#x7684;&#x533A;&#x522B;&#x5728;&#x4E8E; state&#x53EA;&#x5B58;&#x5728;&#x7EC4;&#x4EF6;&#x7684;&#x5185;&#x90E8;&#xFF0C;props &#x5728;&#x6240;&#x6709;&#x5B9E;&#x4F8B;&#x4E2D;&#x5171;&#x4EAB;&#x3002;</p>
+<p>getInitialState &#x548C; getDefaultPops &#x7684;&#x8C03;&#x7528;&#x662F;&#x6709;&#x533A;&#x522B;&#x7684;&#xFF0C;getDefaultPops &#x662F;&#x5BF9;&#x4E8E;&#x7EC4;&#x4EF6;&#x7C7B;&#x6765;&#x8BF4;&#x53EA;&#x8C03;&#x7528;&#x4E00;&#x6B21;&#xFF0C;&#x540E;&#x7EED;&#x8BE5;&#x7C7B;&#x7684;&#x5E94;&#x7528;&#x90FD;&#x4E0D;&#x4F1A;&#x88AB;&#x8C03;&#x7528;&#xFF0C;&#x800C; getInitialState &#x662F;&#x5BF9;&#x4E8E;&#x6BCF;&#x4E2A;&#x7EC4;&#x4EF6;&#x5B9E;&#x4F8B;&#x6765;&#x8BB2;&#x90FD;&#x4F1A;&#x8C03;&#x7528;&#xFF0C;&#x5E76;&#x4E14;&#x53EA;&#x8C03;&#x4E00;&#x6B21;&#x3002;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">var LikeButton = React.createClass({</div><div class="line">  getInitialState: function() {</div><div class="line">    return {liked: false};</div><div class="line">  },</div><div class="line">  handleClick: function(event) {</div><div class="line">    this.setState({liked: !this.state.liked});</div><div class="line">  },</div><div class="line">  render: function() {</div><div class="line">    var text = this.state.liked ? &apos;like&apos; : &apos;haven\&apos;t liked&apos;;</div><div class="line">    return (</div><div class="line">      &lt;p onClick={this.handleClick}&gt;</div><div class="line">        You {text} this. Click to toggle.</div><div class="line">      &lt;/p&gt;</div><div class="line">    );</div><div class="line">  }</div><div class="line">});</div><div class="line"></div><div class="line">ReactDOM.render(</div><div class="line">  &lt;LikeButton /&gt;,</div><div class="line">  document.getElementById(&apos;example&apos;)</div><div class="line">);</div></pre></td></tr></table></figure>
+<p>&#x6BCF;&#x6B21;&#x4FEE;&#x6539; state&#xFF0C;&#x90FD;&#x4F1A;&#x91CD;&#x65B0;&#x6E32;&#x67D3;&#x7EC4;&#x4EF6;&#xFF0C;&#x5B9E;&#x4F8B;&#x5316;&#x540E;&#x901A;&#x8FC7; state &#x66F4;&#x65B0;&#x7EC4;&#x4EF6;&#xFF0C;&#x4F1A;&#x4F9D;&#x6B21;&#x8C03;&#x7528;&#x4E0B;&#x5217;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<p>1&#x3001;shouldComponentUpdate<br> 2&#x3001;conponentWillUpdate<br> 3&#x3001;render<br> 4&#x3001;conponentDidUpdate</p>
+<p>&#x4F46;&#x662F;<strong>&#x4E0D;&#x8981;&#x76F4;&#x63A5;&#x4FEE;&#x6539; this.state&#xFF0C;&#x8981;&#x901A;&#x8FC7; this.setState &#x65B9;&#x6CD5;&#x6765;&#x4FEE;&#x6539;&#x3002;</strong></p>
+<h3 id="componentWillMount"><a href="#componentWillMount" class="headerlink" title="componentWillMount"></a><strong>componentWillMount</strong></h3><p>&#x5728;&#x9996;&#x6B21;&#x6E32;&#x67D3;&#x6267;&#x884C;&#x524D;&#x7ACB;&#x5373;&#x8C03;&#x7528;&#x4E14;&#x4EC5;&#x8C03;&#x7528;&#x4E00;&#x6B21;&#x3002;&#x5982;&#x679C;&#x5728;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x5185;&#x90E8;&#x8C03;&#x7528; setState &#x5E76;&#x4E0D;&#x4F1A;&#x89E6;&#x53D1;&#x91CD;&#x65B0;&#x6E32;&#x67D3;&#xFF0C;&#x8FD9;&#x4E5F;&#x662F;&#x5728; render &#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x4E4B;&#x524D;&#x4FEE;&#x6539; state &#x7684;&#x6700;&#x540E;&#x4E00;&#x6B21;&#x673A;&#x4F1A;&#x3002;</p>
+<h3 id="render"><a href="#render" class="headerlink" title="render"></a><strong>render</strong></h3><p>&#x8BE5;&#x65B9;&#x6CD5;&#x4F1A;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x865A;&#x62DF;DOM&#xFF0C;&#x7528;&#x6765;&#x8868;&#x793A;&#x7EC4;&#x4EF6;&#x7684;&#x8F93;&#x51FA;&#x3002;&#x5BF9;&#x4E8E;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;&#x6765;&#x8BB2;&#xFF0C;render&#x65B9;&#x6CD5;&#x662F;&#x552F;&#x4E00;&#x4E00;&#x4E2A;&#x5FC5;&#x9700;&#x7684;&#x65B9;&#x6CD5;&#x3002;render&#x65B9;&#x6CD5;&#x9700;&#x8981;&#x6EE1;&#x8DB3;&#x4E0B;&#x9762;&#x51E0;&#x70B9;&#xFF1A;</p>
+<ol>
+<li>&#x53EA;&#x80FD;&#x901A;&#x8FC7; this.props &#x548C; this.state &#x8BBF;&#x95EE;&#x6570;&#x636E;&#xFF08;&#x4E0D;&#x80FD;&#x4FEE;&#x6539;&#xFF09;</li>
+<li>&#x53EF;&#x4EE5;&#x8FD4;&#x56DE; null,false &#x6216;&#x8005;&#x4EFB;&#x4F55;React&#x7EC4;&#x4EF6;</li>
+<li>&#x53EA;&#x80FD;&#x51FA;&#x73B0;&#x4E00;&#x4E2A;&#x9876;&#x7EA7;&#x7EC4;&#x4EF6;&#xFF0C;&#x4E0D;&#x80FD;&#x8FD4;&#x56DE;&#x4E00;&#x7EC4;&#x5143;&#x7D20;</li>
+<li>&#x4E0D;&#x80FD;&#x6539;&#x53D8;&#x7EC4;&#x4EF6;&#x7684;&#x72B6;&#x6001;</li>
+<li>&#x4E0D;&#x80FD;&#x4FEE;&#x6539;DOM&#x7684;&#x8F93;&#x51FA;</li>
+</ol>
+<p>render&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x7684;&#x7ED3;&#x679C;&#x5E76;&#x4E0D;&#x662F;&#x771F;&#x6B63;&#x7684;DOM&#x5143;&#x7D20;&#xFF0C;&#x800C;&#x662F;&#x4E00;&#x4E2A;&#x865A;&#x62DF;&#x7684;&#x8868;&#x73B0;&#xFF0C;&#x7C7B;&#x4F3C;&#x4E8E;&#x4E00;&#x4E2A;DOM tree&#x7684;&#x7ED3;&#x6784;&#x7684;&#x5BF9;&#x8C61;&#x3002;react&#x4E4B;&#x6240;&#x4EE5;&#x6548;&#x7387;&#x9AD8;&#xFF0C;&#x5C31;&#x662F;&#x8FD9;&#x4E2A;&#x539F;&#x56E0;&#x3002;</p>
+<h3 id="componentDidMount"><a href="#componentDidMount" class="headerlink" title="componentDidMount"></a>componentDidMount</h3><p>&#x8BE5;&#x65B9;&#x6CD5;&#x4E0D;&#x4F1A;&#x5728;&#x670D;&#x52A1;&#x7AEF;&#x88AB;&#x6E32;&#x67D3;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#x8C03;&#x7528;&#x3002;&#x8BE5;&#x65B9;&#x6CD5;&#x88AB;&#x8C03;&#x7528;&#x65F6;&#xFF0C;&#x5DF2;&#x7ECF;&#x6E32;&#x67D3;&#x51FA;&#x771F;&#x5B9E;&#x7684; DOM&#xFF0C;&#x53EF;&#x4EE5;&#x518D;&#x8BE5;&#x65B9;&#x6CD5;&#x4E2D;&#x901A;&#x8FC7; <code>this.getDOMNode()</code> &#x8BBF;&#x95EE;&#x5230;&#x771F;&#x5B9E;&#x7684; DOM(&#x63A8;&#x8350;&#x4F7F;&#x7528; <code>ReactDOM.findDOMNode()</code>)&#x3002;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var data = [..];</div><div class="line">var comp = React.createClass({</div><div class="line">    render: function(){</div><div class="line">        return &lt;imput .. /&gt;</div><div class="line">    },</div><div class="line">    conponentDidMount: function(){</div><div class="line">        $(this.getDOMNode()).autoComplete({</div><div class="line">            src: data</div><div class="line">        })</div><div class="line">    }</div><div class="line">})</div></pre></td></tr></table></figure>
+<p>&#x7531;&#x4E8E;&#x7EC4;&#x4EF6;&#x5E76;&#x4E0D;&#x662F;&#x771F;&#x5B9E;&#x7684; DOM &#x8282;&#x70B9;&#xFF0C;&#x800C;&#x662F;&#x5B58;&#x5728;&#x4E8E;&#x5185;&#x5B58;&#x4E4B;&#x4E2D;&#x7684;&#x4E00;&#x79CD;&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF0C;&#x53EB;&#x505A;&#x865A;&#x62DF; DOM &#xFF08;virtual DOM&#xFF09;&#x3002;&#x53EA;&#x6709;&#x5F53;&#x5B83;&#x63D2;&#x5165;&#x6587;&#x6863;&#x4EE5;&#x540E;&#xFF0C;&#x624D;&#x4F1A;&#x53D8;&#x6210;&#x771F;&#x5B9E;&#x7684; DOM &#x3002;&#x6709;&#x65F6;&#x9700;&#x8981;&#x4ECE;&#x7EC4;&#x4EF6;&#x83B7;&#x53D6;&#x771F;&#x5B9E; DOM &#x7684;&#x8282;&#x70B9;&#xFF0C;&#x8FD9;&#x65F6;&#x5C31;&#x8981;&#x7528;&#x5230; <code>ref</code> &#x5C5E;&#x6027;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var Area = React.createClass({</div><div class="line">    render: function(){</div><div class="line">        this.getDOMNode(); //render&#x8C03;&#x7528;&#x65F6;&#xFF0C;&#x7EC4;&#x4EF6;&#x672A;&#x6302;&#x8F7D;&#xFF0C;&#x8FD9;&#x91CC;&#x5C06;&#x62A5;&#x9519;</div><div class="line"></div><div class="line">        return &lt;canvas ref=&apos;mainCanvas&apos;&gt;</div><div class="line">    },</div><div class="line">    componentDidMount: function(){</div><div class="line">        var canvas = this.refs.mainCanvas.getDOMNode();</div><div class="line">        //&#x8FD9;&#x662F;&#x6709;&#x6548;&#x7684;&#xFF0C;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x5230; Canvas &#x8282;&#x70B9;</div><div class="line">    }</div><div class="line">})</div></pre></td></tr></table></figure>
+<p>&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x7531;&#x4E8E; <code>this.refs.[refName]</code> &#x5C5E;&#x6027;&#x83B7;&#x53D6;&#x7684;&#x662F;&#x771F;&#x5B9E; DOM &#xFF0C;&#x6240;&#x4EE5;&#x5FC5;&#x987B;&#x7B49;&#x5230;&#x865A;&#x62DF; DOM &#x63D2;&#x5165;&#x6587;&#x6863;&#x4EE5;&#x540E;&#xFF0C;&#x624D;&#x80FD;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x5C5E;&#x6027;&#xFF0C;&#x5426;&#x5219;&#x4F1A;&#x62A5;&#x9519;&#x3002;</p>
+<h2 id="&#x5B58;&#x5728;&#x671F;"><a href="#&#x5B58;&#x5728;&#x671F;" class="headerlink" title="&#x5B58;&#x5728;&#x671F;"></a>&#x5B58;&#x5728;&#x671F;</h2><p>&#x6B64;&#x65F6;&#x7EC4;&#x4EF6;&#x5DF2;&#x7ECF;&#x6E32;&#x67D3;&#x597D;&#x5E76;&#x4E14;&#x7528;&#x6237;&#x53EF;&#x4EE5;&#x4E0E;&#x5B83;&#x8FDB;&#x884C;&#x4EA4;&#x4E92;&#xFF0C;&#x6BD4;&#x5982;&#x9F20;&#x6807;&#x70B9;&#x51FB;&#xFF0C;&#x624B;&#x6307;&#x70B9;&#x6309;&#xFF0C;&#x6216;&#x8005;&#x5176;&#x5B83;&#x7684;&#x4E00;&#x4E9B;&#x4E8B;&#x4EF6;&#xFF0C;&#x5BFC;&#x81F4;&#x5E94;&#x7528;&#x72B6;&#x6001;&#x7684;&#x6539;&#x53D8;&#xFF0C;&#x4F60;&#x5C06;&#x4F1A;&#x770B;&#x5230;&#x4E0B;&#x9762;&#x7684;&#x65B9;&#x6CD5;&#x4F9D;&#x6B21;&#x88AB;&#x8C03;&#x7528;</p>
+<p>1&#x3001;componentWillReceiveProps<br> 2&#x3001;shouldComponentUpdate<br> 3&#x3001;componentWillUpdate<br> 4&#x3001;render<br> 5&#x3001;componentDidUpdate</p>
+<h3 id="componentWillReceiveProps"><a href="#componentWillReceiveProps" class="headerlink" title="componentWillReceiveProps"></a><strong>componentWillReceiveProps</strong></h3><p>&#x7EC4;&#x4EF6;&#x7684; props &#x5C5E;&#x6027;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7236;&#x7EC4;&#x4EF6;&#x6765;&#x66F4;&#x6539;&#xFF0C;&#x8FD9;&#x65F6;&#xFF0C;componentWillReceiveProps &#x5C06;&#x6765;&#x88AB;&#x8C03;&#x7528;&#x3002;&#x53EF;&#x4EE5;&#x5728;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x91CC;&#x66F4;&#x65B0; state,&#x4EE5;&#x89E6;&#x53D1; render &#x65B9;&#x6CD5;&#x91CD;&#x65B0;&#x6E32;&#x67D3;&#x7EC4;&#x4EF6;&#x3002;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">componentWillReceiveProps: function(nextProps){</div><div class="line">    if(nextProps.checked !== undefined){</div><div class="line">        this.setState({</div><div class="line">            checked: nextProps.checked</div><div class="line">        })</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+<h3 id="shouldComponentUpdate"><a href="#shouldComponentUpdate" class="headerlink" title="shouldComponentUpdate"></a><strong>shouldComponentUpdate</strong></h3><p>&#x5982;&#x679C;&#x4F60;&#x786E;&#x5B9A;&#x7EC4;&#x4EF6;&#x7684; props &#x6216;&#x8005; state &#x7684;&#x6539;&#x53D8;&#x4E0D;&#x9700;&#x8981;&#x91CD;&#x65B0;&#x6E32;&#x67D3;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5728;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x91CC;&#x901A;&#x8FC7;&#x8FD4;&#x56DE; <code>false</code> &#x6765;&#x963B;&#x6B62;&#x7EC4;&#x4EF6;&#x7684;&#x91CD;&#x65B0;&#x6E32;&#x67D3;&#xFF0C;&#x8FD4;&#x56DE; `false &#x5219;&#x4E0D;&#x4F1A;&#x6267;&#x884C; render &#x4EE5;&#x53CA;&#x540E;&#x9762;&#x7684; componentWillUpdate&#xFF0C;componentDidUpdate &#x65B9;&#x6CD5;&#x3002;</p>
+<p>&#x8BE5;&#x65B9;&#x6CD5;&#x662F;&#x975E;&#x5FC5;&#x987B;&#x7684;&#xFF0C;&#x5E76;&#x4E14;&#x5927;&#x591A;&#x6570;&#x60C5;&#x51B5;&#x4E0B;&#x6CA1;&#x6709;&#x5728;&#x5F00;&#x53D1;&#x4E2D;&#x4F7F;&#x7528;&#x3002;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">shouldComponentUpdate: function(nextProps, nextState){</div><div class="line">    return this.state.checked === nextState.checked;</div><div class="line">    //return false &#x5219;&#x4E0D;&#x66F4;&#x65B0;&#x7EC4;&#x4EF6;</div><div class="line">}</div></pre></td></tr></table></figure>
+<h3 id="componentWillUpdate"><a href="#componentWillUpdate" class="headerlink" title="componentWillUpdate"></a><strong>componentWillUpdate</strong></h3><p>&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x548C; componentWillMount &#x7C7B;&#x4F3C;&#xFF0C;&#x5728;&#x7EC4;&#x4EF6;&#x63A5;&#x6536;&#x5230;&#x4E86;&#x65B0;&#x7684; props &#x6216;&#x8005; state &#x5373;&#x5C06;&#x8FDB;&#x884C;&#x91CD;&#x65B0;&#x6E32;&#x67D3;&#x524D;&#xFF0C;componentWillUpdate(object nextProps, object nextState) &#x4F1A;&#x88AB;&#x8C03;&#x7528;&#xFF0C;<strong>&#x6CE8;&#x610F;&#x4E0D;&#x8981;&#x5728;&#x6B64;&#x65B9;&#x9762;&#x91CC;&#x518D;&#x53BB;&#x66F4;&#x65B0; props &#x6216;&#x8005; state&#x3002;</strong></p>
+<h3 id="componentDidUpdate"><a href="#componentDidUpdate" class="headerlink" title="componentDidUpdate"></a><strong>componentDidUpdate</strong></h3><p>&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x548C; componentDidMount &#x7C7B;&#x4F3C;&#xFF0C;&#x5728;&#x7EC4;&#x4EF6;&#x91CD;&#x65B0;&#x88AB;&#x6E32;&#x67D3;&#x4E4B;&#x540E;&#xFF0C;componentDidUpdate(object prevProps, object prevState) &#x4F1A;&#x88AB;&#x8C03;&#x7528;&#x3002;&#x53EF;&#x4EE5;&#x5728;&#x8FD9;&#x91CC;&#x8BBF;&#x95EE;&#x5E76;&#x4FEE;&#x6539; DOM&#x3002;</p>
+<h2 id="&#x9500;&#x6BC1;&#x65F6;"><a href="#&#x9500;&#x6BC1;&#x65F6;" class="headerlink" title="&#x9500;&#x6BC1;&#x65F6;"></a>&#x9500;&#x6BC1;&#x65F6;</h2><h3 id="componentWillUnmount"><a href="#componentWillUnmount" class="headerlink" title="componentWillUnmount"></a>componentWillUnmount</h3><p>&#x6BCF;&#x5F53;React&#x4F7F;&#x7528;&#x5B8C;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;&#xFF0C;&#x8FD9;&#x4E2A;&#x7EC4;&#x4EF6;&#x5FC5;&#x987B;&#x4ECE; DOM &#x4E2D;&#x5378;&#x8F7D;&#x540E;&#x88AB;&#x9500;&#x6BC1;&#xFF0C;&#x6B64;&#x65F6; componentWillUnmout &#x4F1A;&#x88AB;&#x6267;&#x884C;&#xFF0C;&#x5B8C;&#x6210;&#x6240;&#x6709;&#x7684;&#x6E05;&#x7406;&#x548C;&#x9500;&#x6BC1;&#x5DE5;&#x4F5C;&#xFF0C;&#x5728; conponentDidMount &#x4E2D;&#x6DFB;&#x52A0;&#x7684;&#x4EFB;&#x52A1;&#x90FD;&#x9700;&#x8981;&#x518D;&#x8BE5;&#x65B9;&#x6CD5;&#x4E2D;&#x64A4;&#x9500;&#xFF0C;&#x5982;&#x521B;&#x5EFA;&#x7684;&#x5B9A;&#x65F6;&#x5668;&#x6216;&#x4E8B;&#x4EF6;&#x76D1;&#x542C;&#x5668;&#x3002;</p>
+<p>&#x5F53;&#x518D;&#x6B21;&#x88C5;&#x8F7D;&#x7EC4;&#x4EF6;&#x65F6;&#xFF0C;&#x4EE5;&#x4E0B;&#x65B9;&#x6CD5;&#x4F1A;&#x88AB;&#x4F9D;&#x6B21;&#x8C03;&#x7528;&#xFF1A;</p>
+<p>1&#x3001;getInitialState<br> 2&#x3001;componentWillMount<br> 3&#x3001;render<br> 4&#x3001;componentDidMount</p>
+<h2 id="&#x53CD;&#x6A21;&#x5F0F;"><a href="#&#x53CD;&#x6A21;&#x5F0F;" class="headerlink" title="&#x53CD;&#x6A21;&#x5F0F;"></a>&#x53CD;&#x6A21;&#x5F0F;</h2><p>&#x5728; getInitialState &#x65B9;&#x6CD5;&#x4E2D;&#xFF0C;&#x5C1D;&#x8BD5;&#x901A;&#x8FC7; this.props &#x6765;&#x521B;&#x5EFA; state &#x7684;&#x505A;&#x6CD5;&#x662F;&#x4E00;&#x79CD;&#x53CD;&#x6A21;&#x5F0F;&#x3002;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">//&#x53CD;&#x6A21;&#x5F0F;</div><div class="line">getDefaultProps: function(){</div><div class="line">    return {</div><div class="line">        data: new Date()</div><div class="line">    }</div><div class="line">},</div><div class="line">getInitialState: function(){</div><div class="line">    return {</div><div class="line">        day: this.props.date - new Date()</div><div class="line">    }</div><div class="line">},</div><div class="line">render: function(){</div><div class="line">    return &lt;div&gt;Day:{this.state.day}&lt;/div&gt;</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>&#x7ECF;&#x8FC7;&#x8BA1;&#x7B97;&#x540E;&#x7684;&#x503C;&#x4E0D;&#x5E94;&#x8BE5;&#x8D4B;&#x7ED9; state&#xFF0C;&#x6B63;&#x786E;&#x7684;&#x6A21;&#x5F0F;&#x5E94;&#x8BE5;&#x662F;&#x5728;&#x6E32;&#x67D3;&#x65F6;&#x8BA1;&#x7B97;&#x8FD9;&#x4E9B;&#x503C;&#x3002;&#x8FD9;&#x6837;&#x4FDD;&#x8BC1;&#x4E86;&#x8BA1;&#x7B97;&#x540E;&#x7684;&#x503C;&#x6C38;&#x8FDC;&#x4E0D;&#x4F1A;&#x4E0E;&#x6D3E;&#x751F;&#x51FA;&#x5B83;&#x7684; props &#x503C;&#x4E0D;&#x540C;&#x6B65;&#x3002;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//&#x6B63;&#x786E;&#x6A21;&#x5F0F;</div><div class="line">getDefaultProps: function(){</div><div class="line">    return {</div><div class="line">        data: new Date()</div><div class="line">    }</div><div class="line">},</div><div class="line">render: function(){</div><div class="line">    var day = this.props.date - new Date();</div><div class="line">    return &lt;div&gt;Day:{day}&lt;/div&gt;</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>&#x5982;&#x679C;&#x53EA;&#x662F;&#x7B80;&#x5355;&#x7684;&#x521D;&#x59CB;&#x5316; state&#xFF0C;&#x90A3;&#x4E48;&#x5E94;&#x7528;&#x53CD;&#x6A21;&#x5F0F;&#x662F;&#x6CA1;&#x6709;&#x95EE;&#x9898;&#x7684;&#x3002;</p>
+<h2 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h2><p>&#x4EE5;&#x4E0B;&#x9762;&#x7684;&#x4E00;&#x5F20;&#x56FE;&#x603B;&#x7ED3;&#x7EC4;&#x4EF6;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#xFF1A;<br><img src="/2016/08/24/react-life/life.png" alt="webpack overview"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/24/react-this/" rel="next" title="React:ES6 & ES7中的6种this绑定方法">
+                <i class="fa fa-chevron-left"></i> React:ES6 & ES7中的6种this绑定方法
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Jin xc" />
+          <p class="site-author-name" itemprop="name">Jin xc</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xiaocjin" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#实例化"><span class="nav-number">1.</span> <span class="nav-text">实例化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#getDefaultProps"><span class="nav-number">1.1.</span> <span class="nav-text">getDefaultProps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getInitialState"><span class="nav-number">1.2.</span> <span class="nav-text">getInitialState</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#componentWillMount"><span class="nav-number">1.3.</span> <span class="nav-text">componentWillMount</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#render"><span class="nav-number">1.4.</span> <span class="nav-text">render</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#componentDidMount"><span class="nav-number">1.5.</span> <span class="nav-text">componentDidMount</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存在期"><span class="nav-number">2.</span> <span class="nav-text">存在期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#componentWillReceiveProps"><span class="nav-number">2.1.</span> <span class="nav-text">componentWillReceiveProps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shouldComponentUpdate"><span class="nav-number">2.2.</span> <span class="nav-text">shouldComponentUpdate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#componentWillUpdate"><span class="nav-number">2.3.</span> <span class="nav-text">componentWillUpdate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#componentDidUpdate"><span class="nav-number">2.4.</span> <span class="nav-text">componentDidUpdate</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#销毁时"><span class="nav-number">3.</span> <span class="nav-text">销毁时</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#componentWillUnmount"><span class="nav-number">3.1.</span> <span class="nav-text">componentWillUnmount</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反模式"><span class="nav-number">4.</span> <span class="nav-text">反模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jin xc</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
