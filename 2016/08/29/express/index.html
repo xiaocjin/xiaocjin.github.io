@@ -1,0 +1,658 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Express," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="1. &amp;#x4E2D;&amp;#x95F4;&amp;#x4EF6;middleware&amp;#x5728;express&amp;#x4E2D;&amp;#xFF0C;&amp;#x4E2D;&amp;#x95F4;&amp;#x4EF6;&amp;#xFF08;middleware&amp;#xFF09;&amp;#x51FD;&amp;#x6570;&amp;#x662F;&amp;#x4E00;&amp;#x79CD;&amp;#x7279;&amp;#x6B8A;&amp;#x7684;&amp;#x51FD;&amp;#x6570;&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Express 基础">
+<meta property="og:url" content="http://yoursite.com/2016/08/29/express/index.html">
+<meta property="og:site_name" content="Enjoy">
+<meta property="og:description" content="1. &amp;#x4E2D;&amp;#x95F4;&amp;#x4EF6;middleware&amp;#x5728;express&amp;#x4E2D;&amp;#xFF0C;&amp;#x4E2D;&amp;#x95F4;&amp;#x4EF6;&amp;#xFF08;middleware&amp;#xFF09;&amp;#x51FD;&amp;#x6570;&amp;#x662F;&amp;#x4E00;&amp;#x79CD;&amp;#x7279;&amp;#x6B8A;&amp;#x7684;&amp;#x51FD;&amp;#x6570;&amp;#">
+<meta property="og:updated_time" content="2016-08-29T01:06:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Express 基础">
+<meta name="twitter:description" content="1. &amp;#x4E2D;&amp;#x95F4;&amp;#x4EF6;middleware&amp;#x5728;express&amp;#x4E2D;&amp;#xFF0C;&amp;#x4E2D;&amp;#x95F4;&amp;#x4EF6;&amp;#xFF08;middleware&amp;#xFF09;&amp;#x51FD;&amp;#x6570;&amp;#x662F;&amp;#x4E00;&amp;#x79CD;&amp;#x7279;&amp;#x6B8A;&amp;#x7684;&amp;#x51FD;&amp;#x6570;&amp;#">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Express 基础 | Enjoy </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Enjoy</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Express 基础
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-29T08:51:47+08:00" content="2016-08-29">
+              2016-08-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Express/" itemprop="url" rel="index">
+                    <span itemprop="name">Express</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-&#x4E2D;&#x95F4;&#x4EF6;middleware"><a href="#1-&#x4E2D;&#x95F4;&#x4EF6;middleware" class="headerlink" title="1. &#x4E2D;&#x95F4;&#x4EF6;middleware"></a>1. &#x4E2D;&#x95F4;&#x4EF6;middleware</h1><p>&#x5728;express&#x4E2D;&#xFF0C;&#x4E2D;&#x95F4;&#x4EF6;&#xFF08;middleware&#xFF09;&#x51FD;&#x6570;&#x662F;&#x4E00;&#x79CD;&#x7279;&#x6B8A;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x5B83;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x4E00;&#x4E2A;http&#x8BF7;&#x6C42;&#x5468;&#x671F;&#x4E2D;&#x7684;request&#x5BF9;&#x8C61;&#x3001;response&#x5BF9;&#x8C61;&#xFF0C;&#x4EE5;&#x53CA;&#x8868;&#x793A;&#x8C03;&#x7528;&#x6808;&#x4E2D;&#x7684;&#x4E0B;&#x4E00;&#x4E2A;&#x4E2D;&#x95F4;&#x4EF6;&#x51FD;&#x6570;&#x7684;&#x5F15;&#x7528;&#xFF0C;&#x5982;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function (req, res, next) {</div><div class="line">    next();</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>&#x5176;&#x4E2D;&#xFF0C;<code>req</code>, <code>res</code>&#x548C;<code>next</code>&#x4E09;&#x4E2A;&#x53C2;&#x6570;&#x540D;&#x662F;&#x7EA6;&#x5B9A;&#x7684;&#xFF0C;&#x4E0D;&#x8981;&#x4F7F;&#x7528;&#x5176;&#x5B83;&#x7684;&#x53D8;&#x91CF;&#x540D;&#x3002;&#x4E2D;&#x95F4;&#x4EF6;&#x51FD;&#x6570;&#x53EF;&#x4EE5;&#x4FEE;&#x6539;request&#x548C;response&#xFF0C;&#x6216;&#x8005;&#x63D0;&#x524D;&#x7ED3;&#x675F;response&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x8C03;&#x7528;<code>next()</code>&#x8868;&#x793A;&#x5C06;&#x6267;&#x884C;&#x4F20;&#x9012;&#x7ED9;&#x8C03;&#x7528;&#x6808;&#x4E2D;&#x7684;&#x4E0B;&#x4E00;&#x4E2A;&#x4E2D;&#x95F4;&#x4EF6;&#x51FD;&#x6570;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x5F53;&#x524D;&#x4E2D;&#x95F4;&#x4EF6;&#x51FD;&#x6570;&#x6CA1;&#x6709;&#x7ED3;&#x675F;HTTP&#x8BF7;&#x6C42;&#xFF0C;&#x5219;&#x5FC5;&#x987B;&#x8C03;&#x7528;<code>next()</code>&#x5C06;&#x6267;&#x884C;&#x4F20;&#x9012;&#x7ED9;&#x4E0B;&#x4E00;&#x4E2A;&#x4E2D;&#x95F4;&#x4EF6;&#x51FD;&#x6570;&#xFF0C;&#x5426;&#x5219;&#x8BF7;&#x6C42;&#x4F1A;&#x6302;&#x8D77;&#x3002;</p>
+<p>&#x4F7F;&#x7528;<code>app.use()</code>&#x52A0;&#x8F7D;&#x4E2D;&#x95F4;&#x4EF6;&#x51FD;&#x6570;&#xFF0C;&#x4E2D;&#x95F4;&#x4EF6;&#x51FD;&#x6570;&#x52A0;&#x8F7D;&#x7684;&#x987A;&#x5E8F;&#x51B3;&#x5B9A;&#x4E86;&#x5B83;&#x7684;&#x6267;&#x884C;&#x987A;&#x5E8F;&#xFF0C;&#x5373;&#x5148;&#x52A0;&#x8F7D;&#xFF0C;&#x5148;&#x6267;&#x884C;&#x3002;</p>
+<p>&#x5728;&#x4E0A;&#x9762;hello-world&#x7684;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x589E;&#x52A0;&#x4E24;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x4E2D;&#x95F4;&#x4EF6;&#x51FD;&#x6570;&#xFF0C;&#x5206;&#x522B;&#x6253;&#x5370;&#x4E24;&#x6761;&#x65E5;&#x5FD7;&#x4FE1;&#x606F;&#x3002;&#x5728;<code>var app = express();</code>&#x7684;&#x540E;&#x9762;&#x589E;&#x52A0;&#x4EE5;&#x4E0B;&#x4EE3;&#x7801;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">app.use(function (req, res, next) {</div><div class="line">  console.log(&apos;in middleware one...&apos;);</div><div class="line">  next();</div><div class="line">});</div><div class="line"></div><div class="line">app.use(function (req, res, next) {</div><div class="line">  console.log(&apos;in middleware two...&apos;);</div><div class="line">  next();</div><div class="line">});</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>&#x6267;&#x884C;&#x540E;&#xFF0C;&#x7EC8;&#x7AEF;&#x4F1A;&#x4F9D;&#x6B21;&#x8F93;&#x51FA;&#x4E24;&#x4E2A;&#x4E2D;&#x95F4;&#x4EF6;&#x51FD;&#x6570;&#x4E2D;&#x7684;&#x65E5;&#x5FD7;&#x4FE1;&#x606F;&#x3002;</p>
+<h2 id="&#x666E;&#x901A;&#x4E2D;&#x95F4;&#x4EF6;"><a href="#&#x666E;&#x901A;&#x4E2D;&#x95F4;&#x4EF6;" class="headerlink" title="&#x666E;&#x901A;&#x4E2D;&#x95F4;&#x4EF6;"></a>&#x666E;&#x901A;&#x4E2D;&#x95F4;&#x4EF6;</h2><p>&#x5305;&#x62EC;app&#x7EA7;&#x4E2D;&#x95F4;&#x4EF6;&#x548C;router&#x7EA7;&#x4E2D;&#x95F4;&#x4EF6;&#x3002;</p>
+<p>app&#x7EA7;&#x4E2D;&#x95F4;&#x4EF6;&#xFF0C;&#x5373;&#x5C06;&#x4E2D;&#x95F4;&#x4EF6;&#x51FD;&#x6570;&#x7ED1;&#x5B9A;&#x5230;<code>app</code>&#x5BF9;&#x8C61;&#xFF08;&#x5373;&#x4F7F;&#x7528;<code>express()</code>&#x5F97;&#x5230;&#x7684;&#x5BF9;&#x8C61;&#xFF09;&#xFF0C;&#x901A;&#x8FC7;<code>app.use()</code>&#x6216;&#x8005;<code>app.METHOD()</code>&#x65B9;&#x6CD5;&#x6765;&#x52A0;&#x8F7D;&#x4E2D;&#x95F4;&#x4EF6;&#x51FD;&#x6570;&#xFF0C;&#x5176;&#x4E2D;<code>METHOD()</code>&#x8868;&#x793A;HTTP&#x8BF7;&#x6C42;&#x4E2D;&#x7684;<code>GET/POST/PUT</code>&#x7B49;&#x65B9;&#x6CD5;&#x3002;&#x4E0A;&#x9762;&#x7684;hello-world&#x793A;&#x4F8B;&#x4E2D;&#x5C31;&#x662F;app&#x7EA7;&#x4E2D;&#x95F4;&#x4EF6;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">app.get(&apos;/&apos;, function(req, res) {</div><div class="line">  res.send(&apos;hello, world!&apos;);</div><div class="line">});</div></pre></td></tr></table></figure>
+<p>router&#x7EA7;&#x4E2D;&#x95F4;&#x4EF6;&#x4E0E;app&#x7EA7;&#x4E2D;&#x95F4;&#x4EF6;&#x7684;&#x7528;&#x6CD5;&#x57FA;&#x672C;&#x4E00;&#x81F4;&#xFF0C;&#x4E0D;&#x540C;&#x7684;&#x662F;&#xFF0C;&#x5B83;&#x5C06;&#x4E2D;&#x95F4;&#x4EF6;&#x51FD;&#x6570;&#x7ED1;&#x5B9A;&#x5230;<code>express.Router()</code>&#x5BF9;&#x8C61;&#xFF0C;&#x901A;&#x8FC7;<code>router.use()</code>&#x6216;&#x8005;<code>router.METHOD()</code>&#x65B9;&#x6CD5;&#x6765;&#x52A0;&#x8F7D;&#x3002;&#x6BD4;&#x5982;&#x4E0A;&#x9762;&#x7684;app&#x7EA7;&#x4E2D;&#x95F4;&#x4EF6;&#xFF0C;&#x7528;router&#x7EA7;&#x4E2D;&#x95F4;&#x4EF6;&#x7684;&#x65B9;&#x6CD5;&#x6539;&#x5199;&#x5982;&#x4E0B;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var router = express.Router();</div><div class="line">router.get(&apos;/&apos;, function(req, res) {</div><div class="line">  res.send(&apos;hello, world!&apos;);</div><div class="line">});</div><div class="line"></div><div class="line">app.use(&apos;/&apos;, router);</div></pre></td></tr></table></figure>
+<p>&#x5F15;&#x5165;router&#x7EA7;&#x4E2D;&#x95F4;&#x4EF6;&#x7684;&#x597D;&#x5904;&#x4E4B;&#x4E00;&#x662F;&#x89E3;&#x8026;&#xFF0C;&#x901A;&#x8FC7;router&#x53BB;&#x5206;&#x5C42;&#xFF0C;&#x7136;&#x540E;app&#x52A0;&#x8F7D;router&#x3002;</p>
+<h2 id="&#x9519;&#x8BEF;&#x5904;&#x7406;&#x4E2D;&#x95F4;&#x4EF6;"><a href="#&#x9519;&#x8BEF;&#x5904;&#x7406;&#x4E2D;&#x95F4;&#x4EF6;" class="headerlink" title="&#x9519;&#x8BEF;&#x5904;&#x7406;&#x4E2D;&#x95F4;&#x4EF6;"></a>&#x9519;&#x8BEF;&#x5904;&#x7406;&#x4E2D;&#x95F4;&#x4EF6;</h2><p>&#x9519;&#x8BEF;&#x5904;&#x7406;&#x4E2D;&#x95F4;&#x4EF6;&#x6BD4;&#x666E;&#x901A;&#x4E2D;&#x95F4;&#x4EF6;&#x591A;&#x4E00;&#x4E2A;&#x53C2;&#x6570;err&#xFF0C;&#x5373;&#x9519;&#x8BEF;&#x5904;&#x7406;&#x4E2D;&#x95F4;&#x4EF6;&#x7684;&#x7B7E;&#x540D;&#x662F;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">function(err, req, res, next) {}</div></pre></td></tr></table></figure>
+<p>&#x666E;&#x901A;&#x4E2D;&#x95F4;&#x4EF6;&#x6784;&#x6210;&#x4E00;&#x4E2A;&#x6808;&#xFF0C;&#x9519;&#x8BEF;&#x5904;&#x7406;&#x4E2D;&#x95F4;&#x4EF6;&#x4E5F;&#x6784;&#x6210;&#x4E00;&#x4E2A;&#x6808;&#xFF0C;&#x8C03;&#x7528;&#x4E0D;&#x5E26;&#x53C2;&#x6570;&#x7684;<code>next()</code>&#x4F1A;&#x8C03;&#x7528;&#x666E;&#x901A;&#x4E2D;&#x95F4;&#x4EF6;&#x6808;&#x4E2D;&#x7684;&#x4E0B;&#x4E00;&#x4E2A;&#x4E2D;&#x95F4;&#x4EF6;&#xFF0C;&#x8C03;&#x7528;&#x5E26;&#x53C2;&#x6570;&#x7684;<code>next(new Error(&apos;bad request&apos;))</code>&#x5219;&#x8868;&#x793A;&#x8FDB;&#x5165;&#x9519;&#x8BEF;&#x6A21;&#x5F0F;&#xFF0C;&#x4F1A;&#x8C03;&#x7528;&#x9519;&#x8BEF;&#x5904;&#x7406;&#x4E2D;&#x95F4;&#x4EF6;&#x6808;&#x7684;&#x4E0B;&#x4E00;&#x4E2A;&#x4E2D;&#x95F4;&#x4EF6;&#x3002;(&#x6CE8;&#x610F;&#x8FD9;&#x91CC;&#x6709;&#x4E2A;&#x4F8B;&#x5916;&#xFF0C;&#x5982;&#x679C;&#x53C2;&#x6570;&#x662F;&#x2019;route&#x2019;&#xFF0C;&#x4E0D;&#x662F;&#x8FDB;&#x5165;&#x9519;&#x8BEF;&#x6A21;&#x5F0F;&#xFF0C;&#x800C;&#x662F;&#x8C03;&#x7528;&#x4E0B;&#x4E00;&#x4E2A;route&#xFF0C;&#x4E0B;&#x7BC7;&#x518D;&#x89E3;&#x91CA;)&#x3002;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">app.use(function(req, res, next) {</div><div class="line">    res.sendFile(filePath, function(err) {</div><div class="line">        if (err) {</div><div class="line">            next(new Error(&apos;Error sending file.&apos;));</div><div class="line">        }</div><div class="line">    });</div><div class="line">})</div></pre></td></tr></table></figure>
+<p>express&#x6709;&#x4E00;&#x4E2A;&#x9ED8;&#x8BA4;&#x7684;&#x9519;&#x8BEF;&#x5904;&#x7406;&#x4E2D;&#x95F4;&#x4EF6;&#xFF0C;&#x4F4D;&#x4E8E;&#x6240;&#x6709;&#x7684;&#x4E2D;&#x95F4;&#x4EF6;&#x51FD;&#x6570;&#x7684;&#x6700;&#x540E;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x81EA;&#x5B9A;&#x4E49;&#x9519;&#x8BEF;&#x5904;&#x7406;&#x4E2D;&#x95F4;&#x4EF6;&#xFF0C;&#x7A0B;&#x5E8F;&#x62A5;&#x9519;&#x4E86;&#xFF0C;&#x5219;&#x4F1A;&#x88AB;&#x9ED8;&#x8BA4;&#x9519;&#x8BEF;&#x5904;&#x7406;&#x4E2D;&#x95F4;&#x4EF6;&#x5904;&#x7406;&#xFF0C;&#x6253;&#x5370;&#x9519;&#x8BEF;&#x6808;&#x3002;</p>
+<h1 id="2-HTTP&#x7684;req&#x5BF9;&#x8C61;"><a href="#2-HTTP&#x7684;req&#x5BF9;&#x8C61;" class="headerlink" title="2. HTTP&#x7684;req&#x5BF9;&#x8C61;"></a>2. HTTP&#x7684;req&#x5BF9;&#x8C61;</h1><h2 id="req-params&#x53D6;&#x8DEF;&#x5F84;&#x53C2;&#x6570;"><a href="#req-params&#x53D6;&#x8DEF;&#x5F84;&#x53C2;&#x6570;" class="headerlink" title="req.params&#x53D6;&#x8DEF;&#x5F84;&#x53C2;&#x6570;"></a>req.params&#x53D6;&#x8DEF;&#x5F84;&#x53C2;&#x6570;</h2><p>express&#x4E2D;&#xFF0C;&#x8DEF;&#x5F84;&#x53C2;&#x6570;&#x4F7F;&#x7528;&#x547D;&#x540D;&#x53C2;&#x6570;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x6BD4;&#x5982;&#x8DEF;&#x5F84;&#x662F;<code>/user/:id</code>&#xFF0C;&#x5219;&#x4F7F;&#x7528;<code>req.params.id</code>&#x53D6;&#x53C2;&#x6570;<code>:id</code>&#x7684;&#x503C;&#xFF0C;&#x5982;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/user/:id</div><div class="line">GET /user/15</div><div class="line">req.params.id  =&gt; 15</div></pre></td></tr></table></figure>
+<h2 id="req-query&#x53D6;&#x67E5;&#x8BE2;&#x53C2;&#x6570;"><a href="#req-query&#x53D6;&#x67E5;&#x8BE2;&#x53C2;&#x6570;" class="headerlink" title="req.query&#x53D6;&#x67E5;&#x8BE2;&#x53C2;&#x6570;"></a>req.query&#x53D6;&#x67E5;&#x8BE2;&#x53C2;&#x6570;</h2><p>&#x53D6;&#x67E5;&#x8BE2;&#x53C2;&#x6570;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x901A;&#x8FC7;<code>req.query</code>&#x6839;&#x636E;key&#x53D6;&#x503C;&#x5373;&#x53EF;&#xFF0C;&#x5982;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">GET /search?name=Ketty&amp;gender=male</div><div class="line">req.query.name =&gt; Ketty</div><div class="line">req.query.gender =&gt; male</div><div class="line"></div><div class="line">GET /search?user[name]=Ketty&amp;user[age]=30</div><div class="line">req.query.user.name =&gt; Ketty</div><div class="line">req.query.user.age  =&gt; 30</div></pre></td></tr></table></figure>
+<h2 id="req-body"><a href="#req-body" class="headerlink" title="req.body"></a>req.body</h2><p>&#x8981;&#x53D6;HTTP&#x8BF7;&#x6C42;&#x4E2D;&#x7684;body&#x5185;&#x5BB9;&#xFF0C;&#x4F7F;&#x7528;<code>req.body</code>&#xFF0C;&#x4F46;&#x662F;&#x9700;&#x8981;&#x501F;&#x52A9;&#x7B2C;&#x4E09;&#x65B9;module&#xFF0C;&#x5982;<code>body-parser</code>&#x548C;<code>multer</code>&#xFF0C;&#x4EE5;&#x4E0B;&#x793A;&#x4F8B;&#x6765;&#x81EA;<a href="http://expressjs.com/en/4x/api.html#req.body" target="_blank" rel="external">express&#x6587;&#x6863;</a>&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var app = require(&apos;express&apos;)();</div><div class="line">var bodyParser = require(&apos;body-parser&apos;);</div><div class="line">var multer = require(&apos;multer&apos;); // v1.0.5</div><div class="line">var upload = multer(); // for parsing multipart/form-data</div><div class="line"></div><div class="line">app.use(bodyParser.json()); // for parsing application/json</div><div class="line">app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded</div><div class="line"></div><div class="line">app.post(&apos;/profile&apos;, upload.array(), function (req, res, next) {</div><div class="line">  console.log(req.body);</div><div class="line">  res.json(req.body);</div><div class="line">});</div></pre></td></tr></table></figure>
+<h2 id="req-get"><a href="#req-get" class="headerlink" title="req.get()"></a>req.get()</h2><p>&#x63D0;&#x53D6;HTTP header&#x4E2D;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x5176;&#x4E2D;&#xFF0C;key&#x662F;&#x4E0D;&#x533A;&#x5206;&#x5927;&#x5C0F;&#x5199;&#x7684;&#xFF0C;&#x5982;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">req.get(&apos;Content-Type&apos;);    // text/html</div><div class="line">req.get(&apos;content-type&apos;);    // text/html</div></pre></td></tr></table></figure>
+<h1 id="3-HTTP&#x7684;res&#x5BF9;&#x8C61;"><a href="#3-HTTP&#x7684;res&#x5BF9;&#x8C61;" class="headerlink" title="3. HTTP&#x7684;res&#x5BF9;&#x8C61;"></a>3. HTTP&#x7684;res&#x5BF9;&#x8C61;</h1><h2 id="res-status"><a href="#res-status" class="headerlink" title="res.status()"></a>res.status()</h2><p>&#x8BE5;&#x65B9;&#x6CD5;&#x4EC5;&#x4EC5;&#x662F;&#x8BBE;&#x7F6E;&#x72B6;&#x6001;&#x7801;&#xFF0C;&#x8FD4;&#x56DE;response&#x8FD8;&#x9700;&#x8C03;&#x7528;<code>send()/end()</code>&#x7B49;&#x65B9;&#x6CD5;&#xFF0C;&#x5982;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">res.status(200).end();</div><div class="line">res.status(401).send(&quot;error: unauthorized!&quot;);</div></pre></td></tr></table></figure>
+<h2 id="res-json"><a href="#res-json" class="headerlink" title="res.json()"></a>res.json()</h2><p>&#x8FD4;&#x56DE;json&#x683C;&#x5F0F;&#x7684;&#x4FE1;&#x606F;&#xFF0C;res&#x4F1A;&#x81EA;&#x52A8;&#x8BBE;&#x7F6E;response&#x7684;<code>Content-Type</code>&#x4E3A;<code>application/json</code>&#xFF0C;&#x5982;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">res.status(401).json({&quot;error&quot;: &quot;unauthorized&quot;});</div></pre></td></tr></table></figure>
+<h2 id="res-send"><a href="#res-send" class="headerlink" title="res.send()"></a>res.send()</h2><p>&#x53D1;&#x9001;HTTP&#x54CD;&#x5E94;&#x4FE1;&#x606F;&#xFF0C;&#x53C2;&#x6570;&#x53EF;&#x4EE5;&#x662F;&#x5B57;&#x7B26;&#x4E32;&#x3001;&#x6570;&#x7EC4;&#x3001;Buffer&#x5BF9;&#x8C61;&#x7B49;&#xFF0C;&#x4F1A;&#x6839;&#x636E;&#x53C2;&#x6570;&#x7684;&#x7C7B;&#x578B;&#x81EA;&#x52A8;&#x8BBE;&#x7F6E;header&#x7684;<code>Content-Type</code>&#xFF0C;&#x5982;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">res.send(new Buffer(&quot;buffer info&quot;));        // Content-Type: application/octet-stream</div><div class="line">res.send(&quot;&lt;small&gt;small text&lt;/small&gt;&quot;);      // Content-Type: text/html</div><div class="line">res.send({message: &quot;Welcome&quot;});             // Content-Type: application/json</div></pre></td></tr></table></figure>
+<h2 id="res-set"><a href="#res-set" class="headerlink" title="res.set()"></a>res.set()</h2><p>&#x8BBE;&#x7F6E;HTTP&#x7684;header&#x4FE1;&#x606F;&#xFF0C;&#x5982;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">res.set(&apos;Content-Type&apos;,&apos;application/pdf&apos;);</div><div class="line">res.setHeader(&apos;Content-Disposition&apos;,&apos;attachment; filename=cnb.pdf&apos;);</div></pre></td></tr></table></figure>
+<h2 id="res-render"><a href="#res-render" class="headerlink" title="res.render()"></a>res.render()</h2><p>&#x4F7F;&#x7528;&#x6A21;&#x677F;&#x5F15;&#x64CE;&#x6E32;&#x67D3;&#x9875;&#x9762;&#xFF0C;&#x7136;&#x540E;&#x4F5C;&#x4E3A;response&#x8FD4;&#x56DE;&#x3002;&#x5982;&#x679C;&#x53C2;&#x6570;&#x8868;&#x793A;&#x7684;&#x6587;&#x4EF6;&#x540D;&#x4E0D;&#x5E26;&#x540E;&#x7F00;&#xFF0C;&#x5219;&#x4F1A;&#x6839;&#x636E;&#x6A21;&#x677F;&#x5F15;&#x64CE;&#x7684;&#x8BBE;&#x7F6E;&#xFF0C;&#x81EA;&#x52A8;&#x63A8;&#x65AD;&#x540E;&#x7F00;&#xFF1B;&#x5982;&#x679C;&#x6587;&#x4EF6;&#x540D;&#x5E26;&#x540E;&#x7F00;&#xFF0C;&#x5219;&#x4F1A;&#x52A0;&#x8F7D;&#x8BE5;&#x540E;&#x7F00;&#x5BF9;&#x5E94;&#x7684;&#x6A21;&#x677F;&#x5F15;&#x64CE;&#x6A21;&#x5757;&#x3002;&#x5982;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">res.render(&apos;index&apos;);</div></pre></td></tr></table></figure>
+<p>&#x5982;&#x679C;&#x9ED8;&#x8BA4;&#x7684;&#x6A21;&#x677F;&#x5F15;&#x64CE;&#x662F;jade&#xFF0C;&#x5219;express&#x4F1A;&#x4ECE;&#x5BF9;&#x5E94;&#x7684;&#x8DEF;&#x5F84;&#x4E0B;&#x67E5;&#x627E;index.jade&#x6587;&#x4EF6;&#x5E76;&#x6E32;&#x67D3;&#x3002;</p>
+<h1 id="4-morgan&#x7528;&#x6CD5;&#x53CA;&#x53C2;&#x6570;"><a href="#4-morgan&#x7528;&#x6CD5;&#x53CA;&#x53C2;&#x6570;" class="headerlink" title="4. morgan&#x7528;&#x6CD5;&#x53CA;&#x53C2;&#x6570;"></a>4. morgan&#x7528;&#x6CD5;&#x53CA;&#x53C2;&#x6570;</h1><p><a href="https://github.com/expressjs/morgan" target="_blank" rel="external">morgan</a>&#x662F;nodejs&#x7684;&#x4E00;&#x4E2A;&#x65E5;&#x5FD7;&#x6A21;&#x5757;&#xFF0C;&#x7531;<a href="http://expressjs.com/" target="_blank" rel="external">express</a>&#x56E2;&#x961F;&#x7EF4;&#x62A4;&#x3002;</p>
+<p>&#x8FD9;&#x91CC;&#x901A;&#x8FC7;&#x793A;&#x4F8B;&#x7B80;&#x8981;&#x4ECB;&#x7ECD;morgan&#x6A21;&#x5757;&#x5728;express&#x4E2D;&#x7684;&#x5E94;&#x7528;&#xFF0C;&#x5927;&#x90E8;&#x5206;&#x793A;&#x4F8B;&#x76F4;&#x63A5;&#x6765;&#x81EA;&#x4E8E;<a href="https://github.com/expressjs/morgan" target="_blank" rel="external">morgan&#x7684;&#x6587;&#x6863;</a>&#x3002;</p>
+<p>&#x9996;&#x5148;&#x9700;&#x8981;&#x5B89;&#x88C5;morgan&#x6A21;&#x5757;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install morgan --save</div></pre></td></tr></table></figure>
+<p>morgan&#x7684;API&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">morgan(format, options);</div></pre></td></tr></table></figure>
+<p>&#x5176;&#x4E2D;<code>format</code>&#x8868;&#x793A;&#x65E5;&#x5FD7;&#x7684;&#x683C;&#x5F0F;&#xFF0C; morgan&#x9884;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E9B;&#x65E5;&#x5FD7;&#x683C;&#x5F0F;&#xFF0C;&#x7528;&#x5E38;&#x91CF;&#x5B57;&#x7B26;&#x4E32;&#x8868;&#x793A;&#xFF0C;&#x5982;&#x2019;combined&#x2019;, &#x2018;common&#x2019;, &#x2018;short&#x2019;, &#x2018;dev&#x2019;&#x7B49;&#xFF1B;options&#x8868;&#x793A;&#x9009;&#x9879;&#xFF0C;&#x6BD4;&#x5982;&#x5C06;&#x65E5;&#x5FD7;&#x8F93;&#x51FA;&#x5230;&#x7EC8;&#x7AEF;&#x6216;&#x8005;&#x6587;&#x4EF6;&#xFF0C;&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x662F;&#x53EF;&#x9009;&#x7684;&#x3002;</p>
+<p><code>format</code>&#x4E3A;&#x2019;combined&#x2019;&#x65F6;&#x7684;&#x65E5;&#x5FD7;&#x6837;&#x4F8B;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">::1 - - [28/Aug/2016:10:50:53 +0000] &quot;GET /home HTTP/1.1&quot; 200 10 &quot;-&quot; &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36&quot;</div></pre></td></tr></table></figure>
+<p><code>format</code>&#x4E3A;&#x2019;short&#x2019;&#x65F6;&#x7684;&#x65E5;&#x5FD7;&#x6837;&#x4F8B;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">::1 - GET /home HTTP/1.1 304 - - 3.345 ms</div></pre></td></tr></table></figure>
+<h1 id="5-&#x5E94;&#x7528;&#x573A;&#x666F;&#x793A;&#x4F8B;"><a href="#5-&#x5E94;&#x7528;&#x573A;&#x666F;&#x793A;&#x4F8B;" class="headerlink" title="5. &#x5E94;&#x7528;&#x573A;&#x666F;&#x793A;&#x4F8B;"></a>5. &#x5E94;&#x7528;&#x573A;&#x666F;&#x793A;&#x4F8B;</h1><h2 id="&#x65E5;&#x5FD7;&#x8F93;&#x51FA;&#x5230;&#x7EC8;&#x7AEF;"><a href="#&#x65E5;&#x5FD7;&#x8F93;&#x51FA;&#x5230;&#x7EC8;&#x7AEF;" class="headerlink" title="&#x65E5;&#x5FD7;&#x8F93;&#x51FA;&#x5230;&#x7EC8;&#x7AEF;"></a>&#x65E5;&#x5FD7;&#x8F93;&#x51FA;&#x5230;&#x7EC8;&#x7AEF;</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">var express = require(&apos;express&apos;);</div><div class="line">var morgan = require(&apos;morgan&apos;);</div><div class="line"></div><div class="line">var app = express();</div><div class="line">app.use(morgan(&apos;short&apos;));</div><div class="line">// app.use(morgan(&apos;short&apos;, {stream: process.stdout}));</div><div class="line">// ::1 - GET /home HTTP/1.1 304 - - 3.345 ms</div><div class="line"></div><div class="line">app.get(&apos;/to-stdout&apos;, function(req, res, next) {</div><div class="line">    res.send(&apos;done.&apos;);</div><div class="line">});</div><div class="line"></div><div class="line">app.listen(3000);</div></pre></td></tr></table></figure>
+<p><code>morgan(format, options)</code>&#x7684;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x7701;&#x7565;&#x65F6;&#xFF0C;morgan&#x9ED8;&#x8BA4;&#x5C06;&#x65E5;&#x5FD7;&#x8F93;&#x51FA;&#x5230;&#x7EC8;&#x7AEF;&#xFF0C;&#x6240;&#x4EE5;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x7684;&#x503C;&#x9ED8;&#x8BA4;&#x4E3A;&#xFF1A;<code>{stream: process.stdout}</code>&#x3002;</p>
+<h2 id="&#x65E5;&#x5FD7;&#x8F93;&#x51FA;&#x5230;&#x6587;&#x4EF6;"><a href="#&#x65E5;&#x5FD7;&#x8F93;&#x51FA;&#x5230;&#x6587;&#x4EF6;" class="headerlink" title="&#x65E5;&#x5FD7;&#x8F93;&#x51FA;&#x5230;&#x6587;&#x4EF6;"></a>&#x65E5;&#x5FD7;&#x8F93;&#x51FA;&#x5230;&#x6587;&#x4EF6;</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">var express = require(&apos;express&apos;);</div><div class="line">var morgan = require(&apos;morgan&apos;);</div><div class="line">var fs = require(&apos;fs&apos;);</div><div class="line">var path = require(&apos;path&apos;);</div><div class="line"></div><div class="line">var app = express();</div><div class="line"></div><div class="line">var accessLogStream = fs.createWriteStream(path.join(__dirname, &apos;access.log&apos;));</div><div class="line"></div><div class="line">app.use(morgan(&apos;common&apos;, {stream: accessLogStream}));</div><div class="line"></div><div class="line">app.get(&apos;/to-file&apos;, function(req, res) {</div><div class="line">    res.send(&apos;done!&apos;);</div><div class="line">});</div><div class="line"></div><div class="line">app.listen(3000);</div></pre></td></tr></table></figure>
+<p>&#x9700;&#x8981;&#x5B9A;&#x4E49;<code>morgan(format, options)</code>&#x7684;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x8868;&#x793A;&#x6587;&#x4EF6;&#x8F93;&#x51FA;&#x6D41;&#x3002;</p>
+<h2 id="&#x65E5;&#x5FD7;&#x8F93;&#x51FA;&#x5230;&#x6587;&#x4EF6;&#xFF0C;&#x5E76;&#x6309;&#x5929;&#x8F6E;&#x8F6C;"><a href="#&#x65E5;&#x5FD7;&#x8F93;&#x51FA;&#x5230;&#x6587;&#x4EF6;&#xFF0C;&#x5E76;&#x6309;&#x5929;&#x8F6E;&#x8F6C;" class="headerlink" title="&#x65E5;&#x5FD7;&#x8F93;&#x51FA;&#x5230;&#x6587;&#x4EF6;&#xFF0C;&#x5E76;&#x6309;&#x5929;&#x8F6E;&#x8F6C;"></a>&#x65E5;&#x5FD7;&#x8F93;&#x51FA;&#x5230;&#x6587;&#x4EF6;&#xFF0C;&#x5E76;&#x6309;&#x5929;&#x8F6E;&#x8F6C;</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">var express = require(&apos;express&apos;);</div><div class="line">var morgan = require(&apos;morgan&apos;);</div><div class="line">var fs = require(&apos;fs&apos;);</div><div class="line">var path =  require(&apos;path&apos;);</div><div class="line">var fileStreamRotator = require(&apos;file-stream-rotator&apos;);</div><div class="line"></div><div class="line">var app = express();</div><div class="line">var logDir = path.join(__dirname, &apos;logs&apos;);</div><div class="line">// ensure log directory exists</div><div class="line">fs.existsSync(logDir) || fs.mkdirSync(logDir);</div><div class="line">// create a rotating write stream</div><div class="line">var accessLogStream = fileStreamRotator.getStream({</div><div class="line">    date_format: &apos;YYYYMMDD&apos;,</div><div class="line">    filename: path.join(logDir, &apos;access-%DATE%.log&apos;),</div><div class="line">    frequency: &apos;daily&apos;,</div><div class="line">    verbose: true</div><div class="line">});</div><div class="line"></div><div class="line">app.use(morgan(&apos;common&apos;, {stream: accessLogStream}));</div><div class="line">app.get(&apos;/to-rotate-file&apos;, function(req, res) {</div><div class="line">    res.send(&apos;done!&apos;);</div><div class="line">});</div><div class="line"></div><div class="line">app.listen(3000);</div></pre></td></tr></table></figure>
+<p>&#x9700;&#x8981;&#x7528;&#x5230;<code>file-stream-rotator</code>&#x6A21;&#x5757;&#x6765;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x8F6E;&#x8F6C;&#x7684;&#x6587;&#x4EF6;&#x6D41;&#x3002;</p>
+<h2 id="&#x65E5;&#x5FD7;&#x540C;&#x65F6;&#x8F93;&#x51FA;&#x5230;&#x7EC8;&#x7AEF;&#x548C;&#x6587;&#x4EF6;"><a href="#&#x65E5;&#x5FD7;&#x540C;&#x65F6;&#x8F93;&#x51FA;&#x5230;&#x7EC8;&#x7AEF;&#x548C;&#x6587;&#x4EF6;" class="headerlink" title="&#x65E5;&#x5FD7;&#x540C;&#x65F6;&#x8F93;&#x51FA;&#x5230;&#x7EC8;&#x7AEF;&#x548C;&#x6587;&#x4EF6;"></a>&#x65E5;&#x5FD7;&#x540C;&#x65F6;&#x8F93;&#x51FA;&#x5230;&#x7EC8;&#x7AEF;&#x548C;&#x6587;&#x4EF6;</h2><p>&#x540C;&#x65F6;&#x52A0;&#x8F7D;&#x8F93;&#x51FA;&#x5230;&#x7EC8;&#x7AEF;&#x548C;&#x6587;&#x4EF6;&#x7684;morgan&#x5BF9;&#x8C61;&#xFF0C;&#x5982;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">app.use(morgan(&apos;combined&apos;));</div><div class="line">app.use(morgan(&apos;common&apos;, {stream: accessLogStream}));</div></pre></td></tr></table></figure>
+<h2 id="&#x81EA;&#x5B9A;&#x4E49;&#x65E5;&#x5FD7;&#x683C;&#x5F0F;"><a href="#&#x81EA;&#x5B9A;&#x4E49;&#x65E5;&#x5FD7;&#x683C;&#x5F0F;" class="headerlink" title="&#x81EA;&#x5B9A;&#x4E49;&#x65E5;&#x5FD7;&#x683C;&#x5F0F;"></a>&#x81EA;&#x5B9A;&#x4E49;&#x65E5;&#x5FD7;&#x683C;&#x5F0F;</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">var express = require(&apos;express&apos;);</div><div class="line">var morgan = require(&apos;morgan&apos;);</div><div class="line">var uuid = require(&apos;node-uuid&apos;);</div><div class="line"></div><div class="line">morgan.token(&apos;id&apos;, function(req) {</div><div class="line">    return req.id;</div><div class="line">});</div><div class="line"></div><div class="line">function assignId(req, res, next) {</div><div class="line">    req.id = uuid.v4();</div><div class="line">    next();</div><div class="line">};</div><div class="line"></div><div class="line">var app = express();</div><div class="line">app.use(assignId);</div><div class="line">app.use(morgan(&apos;:id :method :url :response-time ms&apos;));</div><div class="line"></div><div class="line">app.get(&apos;/customized-format&apos;, function(req, res) {</div><div class="line">    res.send(&apos;done!&apos;);</div><div class="line">});</div><div class="line"></div><div class="line">app.listen(3000);</div></pre></td></tr></table></figure>
+<p>&#x4F7F;&#x7528;uuid&#x6807;&#x8BC6;&#x6BCF;&#x4E00;&#x4E2A;&#x8BF7;&#x6C42;&#xFF0C;&#x65E5;&#x5FD7;&#x5982;&#x4E0B;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a08516c4-201a-4d8a-9f22-d1b6de5e225f GET /customized-format 3.118 ms</div></pre></td></tr></table></figure>
+<h1 id="&#x53C2;&#x8003;"><a href="#&#x53C2;&#x8003;" class="headerlink" title="&#x53C2;&#x8003;"></a><a href="#u53C2_u8003" title="&#x53C2;&#x8003;"></a>&#x53C2;&#x8003;</h1><ul>
+<li><a href="http://expressjs.com/en/4x/api.html" target="_blank" rel="external">4.x API</a></li>
+<li><a href="https://github.com/expressjs/morgan" target="_blank" rel="external">morgan</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Express/" rel="tag">#Express</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/25/chrome-tip/" rel="next" title="Chrome调试小技巧">
+                <i class="fa fa-chevron-left"></i> Chrome调试小技巧
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Jin xc" />
+          <p class="site-author-name" itemprop="name">Jin xc</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xiaocjin" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-中间件middleware"><span class="nav-number">1.</span> <span class="nav-text">1. 中间件middleware</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#普通中间件"><span class="nav-number">1.1.</span> <span class="nav-text">普通中间件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#错误处理中间件"><span class="nav-number">1.2.</span> <span class="nav-text">错误处理中间件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-HTTP的req对象"><span class="nav-number">2.</span> <span class="nav-text">2. HTTP的req对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#req-params取路径参数"><span class="nav-number">2.1.</span> <span class="nav-text">req.params取路径参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#req-query取查询参数"><span class="nav-number">2.2.</span> <span class="nav-text">req.query取查询参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#req-body"><span class="nav-number">2.3.</span> <span class="nav-text">req.body</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#req-get"><span class="nav-number">2.4.</span> <span class="nav-text">req.get()</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-HTTP的res对象"><span class="nav-number">3.</span> <span class="nav-text">3. HTTP的res对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#res-status"><span class="nav-number">3.1.</span> <span class="nav-text">res.status()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#res-json"><span class="nav-number">3.2.</span> <span class="nav-text">res.json()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#res-send"><span class="nav-number">3.3.</span> <span class="nav-text">res.send()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#res-set"><span class="nav-number">3.4.</span> <span class="nav-text">res.set()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#res-render"><span class="nav-number">3.5.</span> <span class="nav-text">res.render()</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-morgan用法及参数"><span class="nav-number">4.</span> <span class="nav-text">4. morgan用法及参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-应用场景示例"><span class="nav-number">5.</span> <span class="nav-text">5. 应用场景示例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#日志输出到终端"><span class="nav-number">5.1.</span> <span class="nav-text">日志输出到终端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日志输出到文件"><span class="nav-number">5.2.</span> <span class="nav-text">日志输出到文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日志输出到文件，并按天轮转"><span class="nav-number">5.3.</span> <span class="nav-text">日志输出到文件，并按天轮转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日志同时输出到终端和文件"><span class="nav-number">5.4.</span> <span class="nav-text">日志同时输出到终端和文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义日志格式"><span class="nav-number">5.5.</span> <span class="nav-text">自定义日志格式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jin xc</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
