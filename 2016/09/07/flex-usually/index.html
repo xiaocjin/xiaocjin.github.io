@@ -1,0 +1,618 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="flex,css," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x5F88;&amp;#x591A;&amp;#x4EBA;&amp;#x90FD;&amp;#x4E0D;&amp;#x592A;&amp;#x719F;&amp;#x6089;flexbox&amp;#x5E03;&amp;#x5C40;&amp;#xFF0C;&amp;#x89C9;&amp;#x5F97;&amp;#x517C;&amp;#x5BB9;&amp;#x6027;&amp;#x4E0D;&amp;#x597D;&amp;#xFF0C;&amp;#x8FD8;&amp;#x6709;&amp;#x7684;&amp;#x88AB;&amp;#x5404;&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FlexBox 一些常用布局">
+<meta property="og:url" content="http://yoursite.com/2016/09/07/flex-usually/index.html">
+<meta property="og:site_name" content="Enjoy">
+<meta property="og:description" content="&amp;#x5F88;&amp;#x591A;&amp;#x4EBA;&amp;#x90FD;&amp;#x4E0D;&amp;#x592A;&amp;#x719F;&amp;#x6089;flexbox&amp;#x5E03;&amp;#x5C40;&amp;#xFF0C;&amp;#x89C9;&amp;#x5F97;&amp;#x517C;&amp;#x5BB9;&amp;#x6027;&amp;#x4E0D;&amp;#x597D;&amp;#xFF0C;&amp;#x8FD8;&amp;#x6709;&amp;#x7684;&amp;#x88AB;&amp;#x5404;&amp;">
+<meta property="og:updated_time" content="2016-09-07T01:14:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FlexBox 一些常用布局">
+<meta name="twitter:description" content="&amp;#x5F88;&amp;#x591A;&amp;#x4EBA;&amp;#x90FD;&amp;#x4E0D;&amp;#x592A;&amp;#x719F;&amp;#x6089;flexbox&amp;#x5E03;&amp;#x5C40;&amp;#xFF0C;&amp;#x89C9;&amp;#x5F97;&amp;#x517C;&amp;#x5BB9;&amp;#x6027;&amp;#x4E0D;&amp;#x597D;&amp;#xFF0C;&amp;#x8FD8;&amp;#x6709;&amp;#x7684;&amp;#x88AB;&amp;#x5404;&amp;">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> FlexBox 一些常用布局 | Enjoy </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Enjoy</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                FlexBox 一些常用布局
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-07T09:06:02+08:00" content="2016-09-07">
+              2016-09-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&#x5F88;&#x591A;&#x4EBA;&#x90FD;&#x4E0D;&#x592A;&#x719F;&#x6089;<code>flexbox&#x5E03;&#x5C40;</code>&#xFF0C;&#x89C9;&#x5F97;&#x517C;&#x5BB9;&#x6027;&#x4E0D;&#x597D;&#xFF0C;&#x8FD8;&#x6709;&#x7684;&#x88AB;&#x5404;&#x79CD;&#x5C5E;&#x6027;&#x7ED5;&#x6655;&#x4E86;&#xFF0C;&#x6709;&#x4E86;&#x6050;&#x60E7;&#x7684;&#x5FC3;&#x7406;&#x3002;&#x5176;&#x5B9E;<code>flexbox</code>&#x5728;&#x79FB;&#x52A8;&#x7AEF;&#x5DF2;&#x7ECF;&#x517C;&#x5BB9;&#x5F88;&#x597D;&#x4E86;&#xFF0C;&#x501F;&#x52A9;<code>autoprefixer</code>&#x53EF;&#x4EE5;&#x5F88;&#x5BB9;&#x6613;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x5E38;&#x89C1;&#x7684;&#x5E03;&#x5C40;&#x4E5F;&#x53EA;&#x6709;&#x51E0;&#x79CD;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x9700;&#x8981;&#x611F;&#x5230;&#x6050;&#x60E7;&#x3002;&#x4E0B;&#x9762;&#x6574;&#x7406;&#x7684;&#x51E0;&#x79CD;&#x65B9;&#x6CD5;&#xFF0C;&#x5982;&#x6CA1;&#x7279;&#x522B;&#x6307;&#x660E;&#xFF0C;&#x90FD;&#x517C;&#x5BB9;&#x5230;android4.1&#x4EE5;&#x4E0A;</p>
+<h2 id="&#x5B50;&#x5143;&#x7D20;&#x7B49;&#x5206;"><a href="#&#x5B50;&#x5143;&#x7D20;&#x7B49;&#x5206;" class="headerlink" title="&#x5B50;&#x5143;&#x7D20;&#x7B49;&#x5206;"></a>&#x5B50;&#x5143;&#x7D20;&#x7B49;&#x5206;</h2><p>&#x8FD9;&#x79CD;&#x5E03;&#x5C40;&#x5E38;&#x7528;&#x4E8E;&#x5E95;&#x90E8;&#x7684;&#x5BFC;&#x822A;&#x6216;&#x8005;tab&#x7B49;&#x5206;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ul{</div><div class="line">  display:flex;</div><div class="line">}</div><div class="line">li{</div><div class="line">  flex:1;</div><div class="line">}</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p><a href="http://jsbin.com/raxumesute/1/edit?html,css,output" target="_blank" rel="external">demo&#x70B9;&#x8FD9;&#x91CC;</a></p>
+<h2 id="&#x5DE6;&#x53F3;&#x56FA;&#x5B9A;&#x5BBD;&#x5EA6;&#xFF0C;&#x4E2D;&#x95F4;&#x81EA;&#x9002;&#x5E94;"><a href="#&#x5DE6;&#x53F3;&#x56FA;&#x5B9A;&#x5BBD;&#x5EA6;&#xFF0C;&#x4E2D;&#x95F4;&#x81EA;&#x9002;&#x5E94;" class="headerlink" title="&#x5DE6;&#x53F3;&#x56FA;&#x5B9A;&#x5BBD;&#x5EA6;&#xFF0C;&#x4E2D;&#x95F4;&#x81EA;&#x9002;&#x5E94;"></a>&#x5DE6;&#x53F3;&#x56FA;&#x5B9A;&#x5BBD;&#x5EA6;&#xFF0C;&#x4E2D;&#x95F4;&#x81EA;&#x9002;&#x5E94;</h2><p>&#x8FD9;&#x79CD;&#x5E03;&#x5C40;&#x5E38;&#x7528;&#x4E8E;&#x5DE6;&#x53F3;&#x5404;&#x6709;&#x56FE;&#x6807;&#x7684;&#x5217;&#x8868;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">ul{</div><div class="line">  display:flex;</div><div class="line">}</div><div class="line">li:first-child,</div><div class="line">li:last-child{</div><div class="line">  width:50px;</div><div class="line">}</div><div class="line">li:nth-child(2){</div><div class="line">  flex:1;</div><div class="line">}</div></pre></td></tr></table></figure>
+<p><a href="http://jsbin.com/muyedarime/1/edit?html,css,output" target="_blank" rel="external">demo&#x70B9;&#x8FD9;&#x91CC;</a></p>
+<h2 id="&#x5E95;&#x90E8;&#x8D34;&#x5E95;"><a href="#&#x5E95;&#x90E8;&#x8D34;&#x5E95;" class="headerlink" title="&#x5E95;&#x90E8;&#x8D34;&#x5E95;"></a>&#x5E95;&#x90E8;&#x8D34;&#x5E95;</h2><p>&#x8FD9;&#x79CD;&#x5E03;&#x5C40;&#x5E38;&#x7528;&#x4E8E;&#x5E95;&#x90E8;&#x5BFC;&#x822A;&#xFF0C;&#x4E2D;&#x95F4;&#x6A21;&#x62DF;&#x6EDA;&#x52A8;&#x3002;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">html,body,ul{</div><div class="line">  height:100%;</div><div class="line">}</div><div class="line">ul{</div><div class="line">  display:flex;</div><div class="line">  flex-direction:column;</div><div class="line">}</div><div class="line">li:first-child,</div><div class="line">li:last-child{</div><div class="line">  height:50px;</div><div class="line">}</div><div class="line">li:nth-child(2){</div><div class="line">  flex:1;</div><div class="line">}</div></pre></td></tr></table></figure>
+<p><a href="http://jsbin.com/midolibayu/1/edit?html,css,output" target="_blank" rel="external">demo&#x70B9;&#x8FD9;&#x91CC;</a></p>
+<h2 id="&#x591A;&#x884C;&#x591A;&#x5217;"><a href="#&#x591A;&#x884C;&#x591A;&#x5217;" class="headerlink" title="&#x591A;&#x884C;&#x591A;&#x5217;"></a>&#x591A;&#x884C;&#x591A;&#x5217;</h2><p>&#x8FD9;&#x79CD;&#x5E03;&#x5C40;&#x5E38;&#x7528;&#x4E8E;&#x5546;&#x54C1;&#x5217;&#x8868;,<a href="http://caniuse.com/#search=flex-wrap" target="_blank" rel="external">android4.4&#x4EE5;&#x4E0B;&#x4E0D;&#x652F;&#x6301;</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">ul{</div><div class="line">  display:flex;</div><div class="line">  flex-wrap:wrap;</div><div class="line">}</div><div class="line">li{</div><div class="line">  width:50%;</div><div class="line">}</div></pre></td></tr></table></figure>
+<p><a href="http://jsbin.com/vijisuzexu/1/edit?html,css,output" target="_blank" rel="external">demo&#x70B9;&#x8FD9;&#x91CC;</a></p>
+<h2 id="&#x4E24;&#x7AEF;&#x5BF9;&#x9F50;&#x5782;&#x76F4;&#x5C45;&#x4E2D;"><a href="#&#x4E24;&#x7AEF;&#x5BF9;&#x9F50;&#x5782;&#x76F4;&#x5C45;&#x4E2D;" class="headerlink" title="&#x4E24;&#x7AEF;&#x5BF9;&#x9F50;&#x5782;&#x76F4;&#x5C45;&#x4E2D;"></a>&#x4E24;&#x7AEF;&#x5BF9;&#x9F50;&#x5782;&#x76F4;&#x5C45;&#x4E2D;</h2><p>&#x8FD9;&#x79CD;&#x5E03;&#x5C40;&#x5E38;&#x7528;&#x4E8E;&#x6A21;&#x5757;&#x5934;&#x90E8;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">header{</div><div class="line">  display:flex;</div><div class="line">  justify-content:space-between;</div><div class="line">  align-items:center;</div><div class="line">}</div></pre></td></tr></table></figure>
+<p><a href="http://jsbin.com/zuwibomezi/1/edit?html,css,output" target="_blank" rel="external">demo&#x70B9;&#x8FD9;&#x91CC;</a></p>
+<h2 id="&#x6C34;&#x5E73;&#x5782;&#x76F4;&#x5C45;&#x4E2D;"><a href="#&#x6C34;&#x5E73;&#x5782;&#x76F4;&#x5C45;&#x4E2D;" class="headerlink" title="&#x6C34;&#x5E73;&#x5782;&#x76F4;&#x5C45;&#x4E2D;"></a>&#x6C34;&#x5E73;&#x5782;&#x76F4;&#x5C45;&#x4E2D;</h2><p>&#x8FD9;&#x79CD;&#x5E03;&#x5C40;&#x5E38;&#x7528;&#x4E8E;&#x56FA;&#x5B9A;&#x5BB9;&#x5668;&#x7684;&#x56FE;&#x7247;&#x5782;&#x76F4;&#x5C45;&#x4E2D;&#x3002;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">header{</div><div class="line">  display:flex;</div><div class="line">  justify-content:center;</div><div class="line">  align-items:center;</div><div class="line">}</div></pre></td></tr></table></figure>
+<p><a href="http://jsbin.com/xebepefuge/1/edit?html,css,output" target="_blank" rel="external">demo&#x70B9;&#x8FD9;&#x91CC;</a></p>
+<h2 id="&#x5B50;&#x5143;&#x7D20;&#x6A2A;&#x5411;&#x6392;&#x5217;&#xFF0C;&#x8D85;&#x8FC7;&#x7236;&#x5BB9;&#x5668;&#x5BBD;&#x5EA6;&#x4E0D;&#x6362;&#x884C;"><a href="#&#x5B50;&#x5143;&#x7D20;&#x6A2A;&#x5411;&#x6392;&#x5217;&#xFF0C;&#x8D85;&#x8FC7;&#x7236;&#x5BB9;&#x5668;&#x5BBD;&#x5EA6;&#x4E0D;&#x6362;&#x884C;" class="headerlink" title="&#x5B50;&#x5143;&#x7D20;&#x6A2A;&#x5411;&#x6392;&#x5217;&#xFF0C;&#x8D85;&#x8FC7;&#x7236;&#x5BB9;&#x5668;&#x5BBD;&#x5EA6;&#x4E0D;&#x6362;&#x884C;"></a>&#x5B50;&#x5143;&#x7D20;&#x6A2A;&#x5411;&#x6392;&#x5217;&#xFF0C;&#x8D85;&#x8FC7;&#x7236;&#x5BB9;&#x5668;&#x5BBD;&#x5EA6;&#x4E0D;&#x6362;&#x884C;</h2><p>&#x8FD9;&#x79CD;&#x5E03;&#x5C40;&#x5E38;&#x7528;&#x6765;&#x505A;slider</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ul{</div><div class="line">  display:flex;</div><div class="line">}</div><div class="line">li{</div><div class="line">  flex-shrink:0;</div><div class="line">}</div></pre></td></tr></table></figure>
+<p><a href="http://jsbin.com/nimumajemo/edit?html,css,output" target="_blank" rel="external">demo&#x70B9;&#x8FD9;&#x91CC;</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/flex/" rel="tag">#flex</a>
+          
+            <a href="/tags/css/" rel="tag">#css</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/29/react-native-flex/" rel="next" title="React Native FLEX布局精讲">
+                <i class="fa fa-chevron-left"></i> React Native FLEX布局精讲
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Jin xc" />
+          <p class="site-author-name" itemprop="name">Jin xc</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xiaocjin" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#子元素等分"><span class="nav-number">1.</span> <span class="nav-text">子元素等分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#左右固定宽度，中间自适应"><span class="nav-number">2.</span> <span class="nav-text">左右固定宽度，中间自适应</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#底部贴底"><span class="nav-number">3.</span> <span class="nav-text">底部贴底</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多行多列"><span class="nav-number">4.</span> <span class="nav-text">多行多列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两端对齐垂直居中"><span class="nav-number">5.</span> <span class="nav-text">两端对齐垂直居中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#水平垂直居中"><span class="nav-number">6.</span> <span class="nav-text">水平垂直居中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#子元素横向排列，超过父容器宽度不换行"><span class="nav-number">7.</span> <span class="nav-text">子元素横向排列，超过父容器宽度不换行</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jin xc</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
