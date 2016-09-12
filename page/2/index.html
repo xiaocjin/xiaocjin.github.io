@@ -240,6 +240,127 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/15/webpack2/" itemprop="url">
+                  Webpack & React
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-15T09:08:37+08:00" content="2016-08-15">
+              2016-08-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">Webpack</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="&#x4EC0;&#x4E48;&#x662F;React"><a href="#&#x4EC0;&#x4E48;&#x662F;React" class="headerlink" title="&#x4EC0;&#x4E48;&#x662F;React"></a>&#x4EC0;&#x4E48;&#x662F;React</h2><p>React&#x662F;&#x4E00;&#x4E2A;&#x7531;Facebook&#x5F00;&#x53D1;&#x7684;library&#xFF0C;&#x5B83;&#x7684;&#x53E3;&#x53F7;&#x662F;&#x201C;A JAVASCRIPT LIBRARY FOR BUILDING USER INTERFACES&#x201D;&#xFF0C;&#x7528;&#x4E8E;&#x6784;&#x5EFA;&#x7528;&#x6237;&#x754C;&#x9762;&#x7684;&#x5E93;&#x3002;&#x4ED6;&#x7684;&#x7279;&#x70B9;&#x662F;&#x4EC5;&#x4EC5;&#x5173;&#x6CE8;&#x4E8E;UI&#x5C42;&#xFF0C;&#x548C;&#x5176;&#x4ED6;&#x7684;&#x4E00;&#x7CFB;&#x5217;&#x5927;&#x578B;&#x7684;&#x6846;&#x67B6;&#xFF08;Ember.js&#x548C;Angular.js&#x7B49;&#xFF09;&#x7684;&#x7406;&#x5FF5;&#x4E0D;&#x540C;&#xFF0C;&#x4E0A;&#x8FF0;&#x4E24;&#x4E2A;&#x6846;&#x67B6;&#x7ED9;&#x4F60;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x6574;&#x5957;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x3002;&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x91CD;&#x5927;&#x7684;&#x6539;&#x9769;&#x5C31;&#x662F;React&#x91C7;&#x7528;&#x4E86;&#x4E00;&#x79CD;&#x72EC;&#x7279;&#x7684;&#x6280;&#x672F;&#x88AB;&#x79F0;&#x4E3A;virtual DOM &#xFF0C;&#x548C;&#x5176;&#x4ED6;&#x4F20;&#x7EDF;&#x6846;&#x67B6;&#x7684;DOM&#x6E32;&#x67D3;&#x8FC7;&#x7A0B;&#x4E0D;&#x540C;&#xFF0C;&#x63D0;&#x4F9B;&#x4E86;&#x66F4;&#x9AD8;&#x6027;&#x80FD;&#x7684;&#x6E32;&#x67D3;&#xFF0C;</p>
+<blockquote>
+<p>&#x5982;&#x679C;&#x4F60;&#x5BF9;virtual DOM&#x611F;&#x5174;&#x8DA3;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x770B;&#x8FD9;&#x4E2A;&#x5E93;&#xFF1A;<a href="https://github.com/Matt-Esch/virtual-dom">Matt-Esch/virtual-dom</a></p>
+<p>&#x5982;&#x679C;&#x4F60;&#x60F3;&#x6DF1;&#x5165;&#x4E86;&#x89E3;React &#x8BF7;&#x524D;&#x5F80;&#x5B98;&#x65B9;&#x7F51;&#x7AD9;<a href="https://facebook.github.io/react/">React.js</a></p>
+</blockquote>
+<h2 id="&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;React&#x548C;Webpack&#x914D;&#x5408;&#x5728;&#x4E00;&#x8D77;"><a href="#&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;React&#x548C;Webpack&#x914D;&#x5408;&#x5728;&#x4E00;&#x8D77;" class="headerlink" title="&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;React&#x548C;Webpack&#x914D;&#x5408;&#x5728;&#x4E00;&#x8D77;"></a>&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;React&#x548C;Webpack&#x914D;&#x5408;&#x5728;&#x4E00;&#x8D77;</h2><p>&#x73B0;&#x5728;&#x6709;&#x5F88;&#x591A;&#x7684;&#x6784;&#x5EFA;&#x5DE5;&#x5177;&#xFF0C;&#x91C7;&#x7528;Webpack&#x7684;&#x539F;&#x56E0;&#x5C31;&#x662F;&#x7B80;&#x5355;&#x6613;&#x7528;&#xFF0C;&#x5BB9;&#x6613;&#x4E0A;&#x624B;&#xFF0C;&#x5E76;&#x4E14;&#x5BF9;React&#x5B8C;&#x7F8E;&#x7684;&#x652F;&#x6301;&#xFF0C;&#x6BD4;&#x5982;&#x8BF4;JSX&#x8BED;&#x6CD5;&#xFF0C;&#x4F7F;&#x7528;babel-loader&#x4EE5;&#x540E;&#x53EF;&#x4EE5;&#x5F88;&#x5B8C;&#x7F8E;&#x7684;&#x652F;&#x6301;&#xFF0C;&#x652F;&#x6301;Hot Loading Component,&#x8BA9;&#x4F60;&#x4E0D;&#x7528;&#x5FCD;&#x53D7;&#x9875;&#x9762;&#x5237;&#x6765;&#x5237;&#x53BB;&#x7684;&#x75DB;&#x82E6;&#xFF0C;&#x8FD8;&#x6709;&#x5C31;&#x662F;&#x914D;&#x7F6E;&#x7B80;&#x5355;&#xFF0C;loaders&#x7684;&#x9B54;&#x529B;&#x662F;&#x6CA1;&#x4EBA;&#x80FD;&#x591F;&#x62D2;&#x7EDD;&#x7684;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x4F60;&#x7684;&#x4E0B;&#x4E00;&#x4E2A;&#x9879;&#x76EE;&#x91C7;&#x7528;React&#x505A;&#x4E3A;View&#x7684;&#x5C55;&#x793A;&#x6846;&#x67B6;&#xFF0C;&#x4E0D;&#x59A8;&#x518D;&#x4F7F;&#x7528;Webpack&#x4E00;&#x8D77;&#x642D;&#x5EFA;&#x4E00;&#x4E2A;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x3002;</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/15/webpack2/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/15/webpack1/" itemprop="url">
                   Webpack开发和部署技巧
                 </a>
@@ -604,7 +725,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">14</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
